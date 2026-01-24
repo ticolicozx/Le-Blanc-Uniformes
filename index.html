@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le Blanc Uniformes</title>
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#000000">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Favicon / Manifest -->
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="apple-touch-icon.png">
-
+  <!-- CSS (opcional, você pode mover para assets/css/styles.css) -->
   <style>
     /* RESET E FONTES */
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
@@ -41,14 +37,15 @@
     .hero-images { display:flex; gap:20px; justify-content:center; }
     .jaleco {
       width:180px; height:320px; border-radius:120px 120px 24px 24px;
-      background-size:cover; background-position:center; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-size:cover; background-position:center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor:pointer;
     }
     .jaleco:hover { transform: translateY(-10px); box-shadow:0 15px 25px rgba(212,175,55,0.3); }
 
-    .branco { background:#f5f5f5; }
-    .rosa { background: linear-gradient(180deg,#f3b6c4,#e58aa1); }
-    .azul { background: linear-gradient(180deg,#9bb7d4,#6f92b8); }
+    .branco { background-image: url("assets/img/jaleco-branco.jpg"); }
+    .rosa { background-image: url("assets/img/jaleco-rosa.jpg"); }
+    .azul { background-image: url("assets/img/jaleco-azul.jpg"); }
 
     /* SEÇÃO INFERIOR */
     .section { padding:80px 40px; border-top:1px solid rgba(212,175,55,0.2); text-align:center; }
@@ -64,6 +61,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="app">
 
