@@ -1,210 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Blanc Uniformes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Blanc Uniformes</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#d4af37">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d4af37">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
-    body { background:#000; color:#d4af37; min-height:100vh; }
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
+body { background:#000; color:#d4af37; min-height:100vh; overflow-x:hidden; }
 
-    /* MENSAGEM FLUTUANTE */
-    .top-message {
-      position: fixed;
-      top:0; left:0; width:100%;
-      background:#c49c2d; color:#000; text-align:center;
-      padding:10px 0; font-weight:600; z-index:1000;
-      font-size:14px;
-    }
+/* Top message */
+.top-message {
+  position: fixed; top:0; left:0; width:100%;
+  background:#c49c2d; color:#000; text-align:center;
+  padding:10px 0; font-weight:600; z-index:1001;
+  font-size:14px;
+}
 
-    .app { width:100%; max-width:1200px; margin:0 auto; padding-top:50px; }
+.app { width:100%; max-width:1200px; margin:0 auto; padding-top:50px; }
 
-    /* HEADER */
-    header { padding:20px 40px; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:999; }
-    header h1 img { height:50px; }
-    .menu-toggle { display:none; font-size:24px; cursor:pointer; color:#d4af37; }
+/* HEADER */
+header { padding:20px 40px; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1000; }
+header .logo-text { display:flex; align-items:center; gap:12px; }
+header .logo-text img { height:50px; }
+header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 
-    nav { display:flex; gap:24px; }
-    nav a { color:#d4af37; text-decoration:none; font-size:14px; opacity:0.85; transition:0.3s; }
-    nav a:hover { opacity:1; }
+/* MENU LATERAL */
+.menu-toggle { font-size:28px; cursor:pointer; color:#d4af37; }
+.side-menu {
+  position: fixed;
+  top:0; left:-250px; width:250px; height:100%;
+  background:#111; color:#d4af37;
+  padding-top:80px; transition:0.3s; z-index:1002;
+}
+.side-menu.show { left:0; }
+.side-menu a, .side-menu .subcat-btn { display:block; padding:12px 20px; text-decoration:none; color:#d4af37; cursor:pointer; transition:0.3s; }
+.side-menu a:hover, .side-menu .subcat-btn:hover { background:#d4af37; color:#000; }
+.subcategories { display:none; padding-left:20px; }
+.subcategories.show { display:block; }
 
-    @media(max-width:900px){
-      .menu-toggle { display:block; }
-      nav { display:none; flex-direction:column; background:#111; position:absolute; top:70px; right:40px; padding:20px; border-radius:10px; }
-      nav.show { display:flex; }
-    }
+/* HERO */
+.hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; padding:60px 40px; align-items:center; }
+.hero-text h2 { font-family: 'Playfair Display', serif; font-size:36px; line-height:1.2; margin-bottom:20px; }
+.hero-text p { font-size:15px; opacity:0.85; margin-bottom:30px; max-width:420px; }
+.hero-text button {
+  padding:14px 32px; border-radius:30px; border:none;
+  background:#d4af37; color:#000; font-size:13px; font-weight:600; letter-spacing:1px;
+  cursor:pointer; transition:0.3s;
+}
+.hero-text button:hover { background:#c49c2d; }
 
-    /* HERO */
-    .hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; padding:60px 40px; align-items:center; }
-    .hero-text h2 { font-family: 'Playfair Display', serif; font-size:36px; line-height:1.2; margin-bottom:20px; }
-    .hero-text p { font-size:15px; opacity:0.85; margin-bottom:30px; max-width:420px; }
-    .hero-text button {
-      padding:14px 32px; border-radius:30px; border:none;
-      background:#d4af37; color:#000; font-size:13px; font-weight:600; letter-spacing:1px;
-      cursor:pointer; transition:0.3s;
-    }
-    .hero-text button:hover { background:#c49c2d; }
+.hero-images { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+.jaleco { width:180px; height:320px; border-radius:120px 120px 24px 24px; background-size:cover; background-position:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; }
+.jaleco:hover { transform: translateY(-10px); box-shadow:0 15px 25px rgba(212,175,55,0.3); }
+.branco { background-image: url("assets/img/jaleco-branco.jpg"); }
+.rosa { background-image: url("assets/img/jaleco-rosa.jpg"); }
+.azul { background-image: url("assets/img/jaleco-azul.jpg"); }
 
-    .hero-images { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
-    .jaleco { width:180px; height:320px; border-radius:120px 120px 24px 24px; background-size:cover; background-position:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; }
-    .jaleco:hover { transform: translateY(-10px); box-shadow:0 15px 25px rgba(212,175,55,0.3); }
-    .branco { background-image: url("assets/img/jaleco-branco.jpg"); }
-    .rosa { background-image: url("assets/img/jaleco-rosa.jpg"); }
-    .azul { background-image: url("assets/img/jaleco-azul.jpg"); }
+/* LOJA */
+.loja { padding:60px 40px; }
+.loja h3 { font-size:28px; margin-bottom:30px; text-align:center; }
 
-    /* SEÇÃO LOJA */
-    .loja { padding:60px 40px; }
-    .loja h3 { font-size:28px; margin-bottom:30px; text-align:center; }
+.produtos { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; }
 
-    .categorias { text-align:center; margin-bottom:30px; }
-    .cat-btn { background:#111; color:#d4af37; border:1px solid #d4af37; padding:8px 16px; margin:5px; border-radius:6px; cursor:pointer; transition:0.3s; }
-    .cat-btn.active, .cat-btn:hover { background:#d4af37; color:#000; }
+.produto { background:#111; border-radius:12px; padding:10px; text-align:center; transition:0.3s; cursor:pointer; }
+.produto img { width:100%; border-radius:8px; margin-bottom:10px; }
+.produto p { font-size:14px; opacity:0.85; margin-bottom:8px; }
+.produto button { padding:6px 12px; background:#d4af37; border:none; border-radius:6px; color:#000; font-weight:600; cursor:pointer; transition:0.3s; }
+.produto button:hover { background:#c49c2d; }
 
-    .produtos { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; }
+/* SEÇÃO INFERIOR */
+.section { padding:80px 40px; border-top:1px solid rgba(212,175,55,0.2); text-align:center; }
+.section h3 { font-size:24px; font-weight:400; margin-bottom:20px; }
+.section p { font-size:14px; max-width:600px; margin:0 auto; opacity:0.8; line-height:1.6; }
 
-    .produto-cat { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; }
-    .produto { background:#111; border-radius:12px; padding:10px; text-align:center; transition:0.3s; cursor:pointer; }
-    .produto img { width:100%; border-radius:8px; margin-bottom:10px; }
-    .produto p { font-size:14px; opacity:0.85; margin-bottom:8px; }
-    .produto button { padding:6px 12px; background:#d4af37; border:none; border-radius:6px; color:#000; font-weight:600; cursor:pointer; transition:0.3s; }
-    .produto button:hover { background:#c49c2d; }
-
-    /* SEÇÃO INFERIOR */
-    .section { padding:80px 40px; border-top:1px solid rgba(212,175,55,0.2); text-align:center; }
-    .section h3 { font-size:24px; font-weight:400; margin-bottom:20px; }
-    .section p { font-size:14px; max-width:600px; margin:0 auto; opacity:0.8; line-height:1.6; }
-
-    /* RESPONSIVO */
-    @media (max-width:900px){
-      .hero { grid-template-columns:1fr; text-align:center; }
-      .produtos, .produto-cat { grid-template-columns: repeat(2, 1fr); }
-      .hero-text button { width:100%; max-width:250px; }
-      .hero-images { justify-content:center; }
-    }
-  </style>
+/* RESPONSIVO */
+@media (max-width:900px){
+  .hero { grid-template-columns:1fr; text-align:center; }
+  .produtos { grid-template-columns: repeat(2, 1fr); }
+  .hero-text button { width:100%; max-width:250px; }
+  .hero-images { justify-content:center; }
+}
+</style>
 </head>
 
 <body>
-  <div class="top-message">📦 Enviamos para todo Brasil | Pagamento à vista com 3% de desconto!</div>
+<div class="top-message">📦 Enviamos para todo Brasil | Pagamento à vista com 3% de desconto!</div>
 
-  <div class="app">
-    <!-- HEADER -->
-    <header>
-      <h1><img src="assets/img/logo.png" alt="Le Blanc Uniformes"></h1>
-      <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-      <nav id="menu">
-        <a href="#loja">Loja</a>
-        <a href="#suporte">Suporte</a>
-        <a href="#sobre">Sobre Nós</a>
-      </nav>
-    </header>
+<div class="app">
+  <!-- HEADER -->
+  <header>
+    <div class="logo-text">
+      <img src="assets/img/logo.png" alt="Le Blanc Uniformes">
+      <h1>LE BLANC UNIFORMES</h1>
+    </div>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-text">
-        <h2>Elegância que veste<br>o profissional</h2>
-        <p>Jalecos e uniformes premium que unem conforto, estilo e identidade profissional.</p>
-        <button onclick="window.open('https://wa.me/5541984493134','_blank')">FALE CONOSCO</button>
-      </div>
-      <div class="hero-images">
-        <div class="jaleco branco"></div>
-        <div class="jaleco rosa"></div>
-        <div class="jaleco azul"></div>
-      </div>
-    </section>
-
-    <!-- LOJA -->
-    <section class="loja" id="loja">
-      <h3>Loja</h3>
-
-      <!-- Menu de categorias -->
-      <div class="categorias">
-        <button class="cat-btn active" onclick="showCategory('jalecos')">Jalecos</button>
-        <button class="cat-btn" onclick="showCategory('uniformes')">Uniformes Profissionais</button>
-        <button class="cat-btn" onclick="showCategory('aventais')">Aventais</button>
-        <button class="cat-btn" onclick="showCategory('outros')">Outros</button>
-      </div>
-
-      <div class="produtos">
-        <!-- Jalecos -->
-        <div class="produto-cat" id="jalecos">
-          <div class="produto"><img src="assets/img/jaleco-branco.jpg"><p>Jaleco Branco</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/jaleco-rosa.jpg"><p>Jaleco Rosa</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/jaleco-azul.jpg"><p>Jaleco Azul</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Jaleco 4</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Jaleco 5</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-        </div>
-
-        <!-- Uniformes Profissionais -->
-        <div class="produto-cat" id="uniformes" style="display:none;">
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Uniforme 1</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Uniforme 2</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Uniforme 3</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Uniforme 4</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Uniforme 5</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-        </div>
-
-        <!-- Aventais -->
-        <div class="produto-cat" id="aventais" style="display:none;">
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Avental 1</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Avental 2</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Avental 3</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Avental 4</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Avental 5</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-        </div>
-
-        <!-- Outros -->
-        <div class="produto-cat" id="outros" style="display:none;">
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Produto 1</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Produto 2</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Produto 3</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Produto 4</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-          <div class="produto"><img src="assets/img/placeholder.png"><p>Produto 5</p><p>R$100,00</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEÇÃO INFERIOR -->
-    <section class="section" id="sobre">
-      <h3>Uniformes com identidade</h3>
-      <p>Criamos peças que valorizam sua imagem profissional, com acabamentos de alto padrão e design moderno.</p>
-    </section>
+  <!-- MENU LATERAL -->
+  <div class="side-menu" id="sideMenu">
+    <a href="#" onclick="toggleSubcategories('lojaSub')">Loja ▼</a>
+    <div class="subcategories" id="lojaSub">
+      <span class="subcat-btn" onclick="filterProducts('jalecos')">Jalecos</span>
+      <span class="subcat-btn" onclick="filterProducts('uniformes')">Uniformes Profissionais</span>
+      <span class="subcat-btn" onclick="filterProducts('aventais')">Aventais</span>
+      <span class="subcat-btn" onclick="filterProducts('outros')">Outros</span>
+    </div>
+    <a href="#suporte">Suporte</a>
+    <a href="#sobre">Sobre Nós</a>
   </div>
 
-  <script>
-    // Menu responsivo
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
-    }
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Elegância que veste<br>o profissional</h2>
+      <p>Jalecos e uniformes premium que unem conforto, estilo e identidade profissional.</p>
+      <button onclick="window.open('https://wa.me/5541984493134','_blank')">FALE CONOSCO</button>
+    </div>
+    <div class="hero-images">
+      <div class="jaleco branco"></div>
+      <div class="jaleco rosa"></div>
+      <div class="jaleco azul"></div>
+    </div>
+  </section>
 
-    // Alterna categorias
-    function showCategory(cat) {
-      const categories = document.querySelectorAll(".produto-cat");
-      categories.forEach(c => c.style.display = "none");
-      document.getElementById(cat).style.display = "grid";
+  <!-- LOJA -->
+  <section class="loja" id="loja">
+    <h3>Loja</h3>
+    <div class="produtos" id="produtosContainer">
+      <!-- Produtos preenchidos por JS -->
+    </div>
+  </section>
 
-      const btns = document.querySelectorAll(".cat-btn");
-      btns.forEach(b => b.classList.remove("active"));
-      event.currentTarget.classList.add("active");
-    }
+  <!-- SEÇÃO INFERIOR -->
+  <section class="section" id="sobre">
+    <h3>Uniformes com identidade</h3>
+    <p>Criamos peças que valorizam sua imagem profissional, com acabamentos de alto padrão e design moderno.</p>
+  </section>
+</div>
 
-    // Service Worker PWA
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js")
-          .then(reg => console.log("Service Worker registrado:", reg))
-          .catch(err => console.log("SW falhou:", err));
-      });
-    }
-  </script>
+<script>
+// MENU LATERAL
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('show');
+}
+function toggleSubcategories(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+// Produtos
+const produtos = {
+  jalecos: [
+    {img:'assets/img/jaleco-branco.jpg', name:'Jaleco Branco', price:'R$100,00'},
+    {img:'assets/img/jaleco-rosa.jpg', name:'Jaleco Rosa', price:'R$100,00'},
+    {img:'assets/img/jaleco-azul.jpg', name:'Jaleco Azul', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Jaleco 4', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Jaleco 5', price:'R$100,00'}
+  ],
+  uniformes: [
+    {img:'assets/img/placeholder.png', name:'Uniforme 1', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Uniforme 2', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Uniforme 3', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Uniforme 4', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Uniforme 5', price:'R$100,00'}
+  ],
+  aventais: [
+    {img:'assets/img/placeholder.png', name:'Avental 1', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Avental 2', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Avental 3', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Avental 4', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Avental 5', price:'R$100,00'}
+  ],
+  outros: [
+    {img:'assets/img/placeholder.png', name:'Produto 1', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Produto 2', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Produto 3', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Produto 4', price:'R$100,00'},
+    {img:'assets/img/placeholder.png', name:'Produto 5', price:'R$100,00'}
+  ]
+};
+
+const container = document.getElementById('produtosContainer');
+function filterProducts(cat){
+  container.innerHTML = '';
+  produtos[cat].forEach(p=>{
+    const div = document.createElement('div');
+    div.classList.add('produto');
+    div.innerHTML = `<img src="${p.img}"><p>${p.name}</p><p>${p.price}</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button>`;
+    container.appendChild(div);
+  });
+}
+
+// Inicializa mostrando Jalecos
+filterProducts('jalecos');
+
+// PWA Service Worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js")
+      .then(reg => console.log("Service Worker registrado:", reg))
+      .catch(err => console.log("SW falhou:", err));
+  });
+}
+</script>
 </body>
 </html>
+
+
