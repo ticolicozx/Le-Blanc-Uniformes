@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le Blanc Uniformes</title>
 
-  <meta name="theme-color" content="#111827" />
+  <meta name="theme-color" content="#000000" />
 
   <style>
     * {
@@ -16,7 +16,7 @@
     }
 
     body {
-      background: #111827;
+      background: #000000;
       display: flex;
       justify-content: center;
     }
@@ -25,64 +25,63 @@
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
-      background: #ffffff;
+      background: #000000;
+      color: #d4af37;
       display: flex;
       flex-direction: column;
     }
 
     header {
-      background: #111827;
-      color: #ffffff;
-      padding: 20px;
+      padding: 24px 16px;
       text-align: center;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
     }
 
     header h1 {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
+      letter-spacing: 1px;
     }
 
     header p {
       font-size: 13px;
       opacity: 0.8;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     main {
       flex: 1;
-      padding: 16px;
+      padding: 20px 16px;
     }
 
     .hero {
-      background: linear-gradient(135deg, #111827, #1f2933);
-      color: white;
-      padding: 20px;
+      border: 1px solid rgba(212,175,55,0.4);
       border-radius: 16px;
-      margin-bottom: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
     .hero h2 {
       font-size: 18px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .hero p {
       font-size: 14px;
-      opacity: 0.9;
+      opacity: 0.85;
     }
 
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
     .card {
-      background: #f9fafb;
+      border: 1px solid rgba(212,175,55,0.3);
       border-radius: 14px;
-      padding: 16px;
+      padding: 16px 12px;
       text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
     }
 
     .card h3 {
@@ -92,28 +91,28 @@
 
     .card p {
       font-size: 12px;
-      color: #6b7280;
+      opacity: 0.8;
     }
 
     .cta {
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
     .cta button {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
+      border-radius: 14px;
       border: none;
-      border-radius: 12px;
-      background: #111827;
-      color: white;
+      background: linear-gradient(135deg, #d4af37, #b8962e);
+      color: #000000;
       font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
     }
 
     nav {
       display: flex;
-      border-top: 1px solid #e5e7eb;
-      background: #ffffff;
+      border-top: 1px solid rgba(212,175,55,0.3);
     }
 
     nav button {
@@ -121,12 +120,12 @@
       padding: 12px 0;
       background: none;
       border: none;
+      color: #d4af37;
       font-size: 12px;
       cursor: pointer;
     }
 
     nav button.active {
-      color: #111827;
       font-weight: bold;
     }
   </style>
@@ -135,13 +134,13 @@
   <div class="app">
     <header>
       <h1>Le Blanc Uniformes</h1>
-      <p>Uniformes profissionais sob medida</p>
+      <p>Elegância e profissionalismo</p>
     </header>
 
-    <main id="content">
+    <main>
       <div class="hero">
-        <h2>Qualidade & Elegância</h2>
-        <p>Uniformes personalizados para sua empresa, escola ou equipe.</p>
+        <h2>Uniformes Premium</h2>
+        <p>Modelos profissionais e personalizados para empresas, escolas e equipes.</p>
       </div>
 
       <div class="grid">
@@ -155,16 +154,16 @@
         </div>
         <div class="card">
           <h3>Hospitalares</h3>
-          <p>Padrão e segurança</p>
+          <p>Qualidade e padrão</p>
         </div>
         <div class="card">
           <h3>Personalizados</h3>
-          <p>Do seu jeito</p>
+          <p>Exclusivos para sua marca</p>
         </div>
       </div>
 
       <div class="cta">
-        <button onclick="window.open('https://wa.me/5500000000000','_blank')">Falar no WhatsApp</button>
+        <button onclick="window.open('https://wa.me/5541984493134','_blank')">Falar no WhatsApp</button>
       </div>
     </main>
 
