@@ -7,171 +7,176 @@
 
   <meta name="theme-color" content="#000000" />
 
+  <!-- Fonte parecida com a do modelo (clean e elegante) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      background: #000000;
+      background: #000;
       display: flex;
       justify-content: center;
     }
 
     .app {
       width: 100%;
-      max-width: 430px;
+      max-width: 1200px;
       min-height: 100vh;
-      background: #000000;
+      background: #000;
       color: #d4af37;
-      display: flex;
-      flex-direction: column;
     }
 
+    /* HEADER */
     header {
-      padding: 24px 16px;
-      text-align: center;
-      border-bottom: 1px solid rgba(212,175,55,0.3);
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 2px;
     }
 
-    header p {
+    header nav a {
+      color: #d4af37;
+      text-decoration: none;
+      margin-left: 24px;
       font-size: 13px;
       opacity: 0.8;
-      margin-top: 6px;
     }
 
-    main {
-      flex: 1;
-      padding: 20px 16px;
-    }
-
+    /* HERO */
     .hero {
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 16px;
-      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 40px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.2;
       margin-bottom: 20px;
     }
 
-    .hero h2 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .hero p {
-      font-size: 14px;
+    .hero-text p {
+      font-size: 15px;
       opacity: 0.85;
+      margin-bottom: 30px;
+      max-width: 420px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .hero-text button {
+      padding: 14px 32px;
+      border-radius: 30px;
+      border: none;
+      background: #d4af37;
+      color: #000;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
     }
 
-    .card {
-      border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 14px;
-      padding: 16px 12px;
-      text-align: center;
+    /* IMAGENS DOS JALECOS */
+    .hero-images {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
     }
 
-    .card h3 {
+    .jaleco {
+      width: 180px;
+      height: 320px;
+      border-radius: 120px 120px 24px 24px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .branco { background: #f5f5f5; }
+    .rosa { background: linear-gradient(180deg, #f3b6c4, #e58aa1); }
+    .azul { background: linear-gradient(180deg, #9bb7d4, #6f92b8); }
+
+    /* SEÇÃO INFERIOR */
+    .section {
+      padding: 80px 40px;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+
+    .section h3 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .section p {
       font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 12px;
+      max-width: 500px;
       opacity: 0.8;
     }
 
-    .cta {
-      margin-top: 24px;
-    }
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
 
-    .cta button {
-      width: 100%;
-      padding: 15px;
-      border-radius: 14px;
-      border: none;
-      background: linear-gradient(135deg, #d4af37, #b8962e);
-      color: #000000;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      .hero-images {
+        margin-top: 40px;
+      }
 
-    nav {
-      display: flex;
-      border-top: 1px solid rgba(212,175,55,0.3);
-    }
-
-    nav button {
-      flex: 1;
-      padding: 12px 0;
-      background: none;
-      border: none;
-      color: #d4af37;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    nav button.active {
-      font-weight: bold;
+      header {
+        flex-direction: column;
+        gap: 16px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="app">
+
     <header>
-      <h1>Le Blanc Uniformes</h1>
-      <p>Elegância e profissionalismo</p>
+      <h1>LE BLANC UNIFORMES</h1>
+      <nav>
+        <a href="#">Início</a>
+        <a href="#">Catálogo</a>
+        <a href="#">Contato</a>
+      </nav>
     </header>
 
-    <main>
-      <div class="hero">
-        <h2>Uniformes Premium</h2>
-        <p>Modelos profissionais e personalizados para empresas, escolas e equipes.</p>
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Elegância que veste<br>o profissional</h2>
+        <p>
+          Jalecos e uniformes premium que unem conforto, estilo e identidade profissional.
+        </p>
+        <button onclick="window.open('https://wa.me/5541984493134','_blank')">FALE CONOSCO</button>
       </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Escolares</h3>
-          <p>Conforto e durabilidade</p>
-        </div>
-        <div class="card">
-          <h3>Empresariais</h3>
-          <p>Imagem profissional</p>
-        </div>
-        <div class="card">
-          <h3>Hospitalares</h3>
-          <p>Qualidade e padrão</p>
-        </div>
-        <div class="card">
-          <h3>Personalizados</h3>
-          <p>Exclusivos para sua marca</p>
-        </div>
+      <div class="hero-images">
+        <div class="jaleco branco"></div>
+        <div class="jaleco rosa"></div>
+        <div class="jaleco azul"></div>
       </div>
+    </section>
 
-      <div class="cta">
-        <button onclick="window.open('https://wa.me/5541984493134','_blank')">Falar no WhatsApp</button>
-      </div>
-    </main>
+    <section class="section">
+      <h3>Uniformes com identidade</h3>
+      <p>
+        Criamos peças que valorizam sua imagem profissional, com acabamentos de alto padrão e design moderno.
+      </p>
+    </section>
 
-    <nav>
-      <button class="active">Home</button>
-      <button>Catálogo</button>
-      <button>Contato</button>
-    </nav>
   </div>
 </body>
 </html>
