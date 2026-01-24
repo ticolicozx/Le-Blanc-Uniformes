@@ -3,43 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu App Web</title>
+  <title>Le Blanc Uniformes</title>
 
-  <!-- Manifest PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#4f46e5" />
+  <meta name="theme-color" content="#111827" />
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     body {
-      background: #f3f4f6;
-      min-height: 100vh;
+      background: #111827;
       display: flex;
       justify-content: center;
     }
 
     .app {
       width: 100%;
-      max-width: 420px;
-      background: #ffffff;
+      max-width: 430px;
       min-height: 100vh;
+      background: #ffffff;
       display: flex;
       flex-direction: column;
     }
 
     header {
-      background: #4f46e5;
-      color: white;
-      padding: 16px;
+      background: #111827;
+      color: #ffffff;
+      padding: 20px;
       text-align: center;
-      font-size: 18px;
-      font-weight: bold;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-top: 4px;
     }
 
     main {
@@ -47,14 +53,126 @@
       padding: 16px;
     }
 
-    .card {
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    .hero {
+      background: linear-gradient(135deg, #111827, #1f2933);
+      color: white;
+      padding: 20px;
+      border-radius: 16px;
+      margin-bottom: 16px;
     }
 
-    .card button {
+    .hero h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: #f9fafb;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+
+    .cta button {
       width: 100%;
-      padding: 12p
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      border-top: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    nav button {
+      flex: 1;
+      padding: 12px 0;
+      background: none;
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    nav button.active {
+      color: #111827;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Le Blanc Uniformes</h1>
+      <p>Uniformes profissionais sob medida</p>
+    </header>
+
+    <main id="content">
+      <div class="hero">
+        <h2>Qualidade & Elegância</h2>
+        <p>Uniformes personalizados para sua empresa, escola ou equipe.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Escolares</h3>
+          <p>Conforto e durabilidade</p>
+        </div>
+        <div class="card">
+          <h3>Empresariais</h3>
+          <p>Imagem profissional</p>
+        </div>
+        <div class="card">
+          <h3>Hospitalares</h3>
+          <p>Padrão e segurança</p>
+        </div>
+        <div class="card">
+          <h3>Personalizados</h3>
+          <p>Do seu jeito</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button onclick="window.open('https://wa.me/5500000000000','_blank')">Falar no WhatsApp</button>
+      </div>
+    </main>
+
+    <nav>
+      <button class="active">Home</button>
+      <button>Catálogo</button>
+      <button>Contato</button>
+    </nav>
+  </div>
+</body>
+</html>
