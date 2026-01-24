@@ -37,9 +37,10 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 .menu-toggle { font-size:28px; cursor:pointer; color:#d4af37; }
 .side-menu {
   position: fixed;
-  top:0; left:-250px; width:250px; height:100%;
+  top:0; left:-270px; width:270px; height:100%;
   background:#111; color:#d4af37;
   padding-top:80px; transition:0.3s; z-index:1002;
+  overflow-y:auto;
 }
 .side-menu.show { left:0; }
 .side-menu a, .side-menu .subcat-btn { display:block; padding:12px 20px; text-decoration:none; color:#d4af37; cursor:pointer; transition:0.3s; }
@@ -59,7 +60,7 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 .hero-text button:hover { background:#c49c2d; }
 
 .hero-images { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
-.jaleco { width:180px; height:320px; border-radius:120px 120px 24px 24px; background-size:cover; background-position:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; }
+.jaleco { width:220px; height:380px; border-radius:120px 120px 24px 24px; background-size:cover; background-position:center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor:pointer; }
 .jaleco:hover { transform: translateY(-10px); box-shadow:0 15px 25px rgba(212,175,55,0.3); }
 .branco { background-image: url("assets/img/jaleco-branco.jpg"); }
 .rosa { background-image: url("assets/img/jaleco-rosa.jpg"); }
@@ -69,12 +70,12 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 .loja { padding:60px 40px; }
 .loja h3 { font-size:28px; margin-bottom:30px; text-align:center; }
 
-.produtos { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; }
+.produtos { display:grid; grid-template-columns: repeat(5, 1fr); gap:25px; }
 
-.produto { background:#111; border-radius:12px; padding:10px; text-align:center; transition:0.3s; cursor:pointer; }
-.produto img { width:100%; border-radius:8px; margin-bottom:10px; }
+.produto { background:#111; border-radius:12px; padding:15px; text-align:center; transition:0.3s; cursor:pointer; }
+.produto img { width:100%; border-radius:8px; margin-bottom:12px; height:200px; object-fit:cover; }
 .produto p { font-size:14px; opacity:0.85; margin-bottom:8px; }
-.produto button { padding:6px 12px; background:#d4af37; border:none; border-radius:6px; color:#000; font-weight:600; cursor:pointer; transition:0.3s; }
+.produto button { padding:8px 14px; background:#d4af37; border:none; border-radius:6px; color:#000; font-weight:600; cursor:pointer; transition:0.3s; }
 .produto button:hover { background:#c49c2d; }
 
 /* SEÇÃO INFERIOR */
@@ -83,12 +84,15 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 .section p { font-size:14px; max-width:600px; margin:0 auto; opacity:0.8; line-height:1.6; }
 
 /* RESPONSIVO */
+@media (max-width:1200px){ .produtos { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width:900px){
   .hero { grid-template-columns:1fr; text-align:center; }
   .produtos { grid-template-columns: repeat(2, 1fr); }
   .hero-text button { width:100%; max-width:250px; }
   .hero-images { justify-content:center; }
 }
+@media (max-width:600px){ .produtos { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 
@@ -109,10 +113,10 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
   <div class="side-menu" id="sideMenu">
     <a href="#" onclick="toggleSubcategories('lojaSub')">Loja ▼</a>
     <div class="subcategories" id="lojaSub">
-      <span class="subcat-btn" onclick="filterProducts('jalecos')">Jalecos</span>
-      <span class="subcat-btn" onclick="filterProducts('uniformes')">Uniformes Profissionais</span>
-      <span class="subcat-btn" onclick="filterProducts('aventais')">Aventais</span>
-      <span class="subcat-btn" onclick="filterProducts('outros')">Outros</span>
+      <span class="subcat-btn" data-cat="jalecos">Jalecos</span>
+      <span class="subcat-btn" data-cat="uniformes">Uniformes Profissionais</span>
+      <span class="subcat-btn" data-cat="aventais">Aventais</span>
+      <span class="subcat-btn" data-cat="outros">Outros</span>
     </div>
     <a href="#suporte">Suporte</a>
     <a href="#sobre">Sobre Nós</a>
@@ -135,9 +139,7 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
   <!-- LOJA -->
   <section class="loja" id="loja">
     <h3>Loja</h3>
-    <div class="produtos" id="produtosContainer">
-      <!-- Produtos preenchidos por JS -->
-    </div>
+    <div class="produtos" id="produtosContainer"></div>
   </section>
 
   <!-- SEÇÃO INFERIOR -->
@@ -149,14 +151,10 @@ header .logo-text h1 { font-size:20px; letter-spacing:2px; }
 
 <script>
 // MENU LATERAL
-function toggleMenu(){
-  document.getElementById('sideMenu').classList.toggle('show');
-}
-function toggleSubcategories(id){
-  document.getElementById(id).classList.toggle('show');
-}
+function toggleMenu(){ document.getElementById('sideMenu').classList.toggle('show'); }
+function toggleSubcategories(id){ document.getElementById(id).classList.toggle('show'); }
 
-// Produtos
+// PRODUTOS
 const produtos = {
   jalecos: [
     {img:'assets/img/jaleco-branco.jpg', name:'Jaleco Branco', price:'R$100,00'},
@@ -189,18 +187,30 @@ const produtos = {
 };
 
 const container = document.getElementById('produtosContainer');
+
+// Função que filtra produtos por categoria
 function filterProducts(cat){
   container.innerHTML = '';
-  produtos[cat].forEach(p=>{
-    const div = document.createElement('div');
-    div.classList.add('produto');
-    div.innerHTML = `<img src="${p.img}"><p>${p.name}</p><p>${p.price}</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button>`;
-    container.appendChild(div);
-  });
+  if(produtos[cat]){
+    produtos[cat].forEach(p=>{
+      const div = document.createElement('div');
+      div.classList.add('produto');
+      div.innerHTML = `<img src="${p.img}" alt="${p.name}"><p>${p.name}</p><p>${p.price}</p><button onclick="window.open('https://wa.me/5541984493134','_blank')">Comprar</button>`;
+      container.appendChild(div);
+    });
+  }
 }
 
 // Inicializa mostrando Jalecos
 filterProducts('jalecos');
+
+// Tornar os botões subcategoria clicáveis
+document.querySelectorAll('.subcat-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const cat = btn.getAttribute('data-cat');
+    filterProducts(cat);
+  });
+});
 
 // PWA Service Worker
 if ("serviceWorker" in navigator) {
