@@ -84,6 +84,20 @@ header{
 
 .menu-btn:hover { color: #fff; }
 
+/* --- CUSTOMIZAÇÃO: OVERLAY PARA FECHAR CLICANDO FORA (WEB) --- */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* Fundo escurecido leve */
+  z-index: 1140;
+  display: none;
+  backdrop-filter: blur(2px);
+}
+.menu-overlay.active { display: block; }
+
 /* MENU LATERAL REFINADO */
 .side-menu{
   position:fixed;
@@ -100,7 +114,7 @@ header{
 
 .side-menu.active{right:0;}
 
-/* NOVO: BOTÃO X DENTRO DO MENU */
+/* --- CUSTOMIZAÇÃO: X CONDICIONAL PARA PWA --- */
 .close-side-menu {
   position: absolute;
   top: 25px;
@@ -109,6 +123,12 @@ header{
   cursor: pointer;
   color: var(--gold);
   transition: var(--transition);
+  display: none; /* Escondido por padrão (Web) */
+}
+
+/* Detecta se é PWA instalado para mostrar o X */
+@media all and (display-mode: standalone) {
+  .close-side-menu { display: block; }
 }
 
 .close-side-menu:hover {
@@ -370,6 +390,8 @@ header{
 🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
 </div>
 
+<div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
+
 <header>
   <div class="logo-area">
     <img src="assets/img/logo.png" alt="Le Blanc Logo">
@@ -430,15 +452,18 @@ header{
 <script>
 const menu = document.getElementById("menu");
 const menuBtn = document.getElementById("menuBtn");
+const overlay = document.getElementById("overlay"); // Elemento do Overlay
 const submenu = document.getElementById("submenu");
 const home = document.getElementById("home");
 const store = document.getElementById("store");
 const sliderArea = document.getElementById("sliderArea");
 const dotsContainer = document.getElementById("dots");
 
-/* MENU */
+/* MENU ATUALIZADO COM OVERLAY */
 function toggleMenu(){
   menu.classList.toggle("active");
+  overlay.classList.toggle("active"); // Alterna o overlay
+  
   if(menu.classList.contains("active")){
       menuBtn.textContent = "✕";
       document.body.style.overflow = "hidden";
@@ -484,7 +509,6 @@ function goHome(){
 let current = 0;
 const slides = document.querySelectorAll(".slide");
 
-// Gerar pontinhos (dots)
 slides.forEach((_, i) => {
     const dot = document.createElement("div");
     dot.classList.add("dot");
@@ -514,7 +538,6 @@ function prevSlide(){
 
 let autoSlide = setInterval(nextSlide, 5000);
 
-// Pausar ao interagir
 sliderArea.onmouseenter = () => clearInterval(autoSlide);
 sliderArea.onmouseleave = () => autoSlide = setInterval(nextSlide, 5000);
 
