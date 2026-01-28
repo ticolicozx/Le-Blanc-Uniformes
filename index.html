@@ -12,252 +12,108 @@
   --gold:#d4af37;
   --black:#000;
   --gray:#1a1a1a;
-  --dark:#0f0f0f;
+  --space-gray:#7a7a7a;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 
-body{
-  background:var(--black);
-  color:var(--gold);
-}
+body{background:var(--black);color:var(--gold);overflow-x:hidden}
 
 /* TOPO */
-.top-bar{
-  background:#222;
-  text-align:center;
-  padding:8px;
-  font-size:13px;
-}
+.top-bar{background:#222;text-align:center;padding:8px;font-size:13px}
 
 /* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 30px;
-  position:relative;
-  z-index:1001;
-}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 30px}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-area img{height:50px}
+.logo-area h1{font-size:20px;letter-spacing:2px;font-weight:500}
 
-.logo-area{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+.menu-btn{font-size:26px;cursor:pointer;z-index:1002;transition:.3s}
+.menu-btn.active{transform:rotate(90deg)}
 
-.logo-area img{
-  height:50px;
-}
-
-.logo-area h1{
-  font-size:20px;
-  letter-spacing:2px;
-  font-weight:500;
-}
-
-.menu-btn{
-  font-size:28px;
-  cursor:pointer;
-  z-index:1002;
-}
-
-/* MENU LATERAL */
+/* MENU */
 .side-menu{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:280px;
-  height:100vh;
-  background:var(--dark);
-  padding:30px;
-  transition:.4s;
-  z-index:1000;
+  position:fixed;top:0;right:-100%;
+  width:280px;height:100vh;
+  background:#0f0f0f;padding:30px;
+  transition:.4s;z-index:1001
 }
-
-.side-menu.active{
-  right:0;
-}
-
-.side-menu a{
-  display:block;
-  margin-bottom:18px;
-  text-decoration:none;
-  color:var(--gold);
-  font-size:16px;
-}
-
-.submenu{
-  margin-left:15px;
-  display:none;
-}
-
-.submenu a{
-  font-size:14px;
-  opacity:.85;
-}
+.side-menu.active{right:0}
+.side-menu a{display:block;margin-bottom:20px;text-decoration:none;color:var(--gold)}
+.submenu{margin-left:15px;display:none}
 
 /* HERO */
-.hero{
-  max-width:1200px;
-  margin:auto;
-  padding:60px 30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
+.hero{padding:60px 30px 20px;max-width:1100px;margin:auto}
+.hero h2{font-size:42px;font-weight:400}
+.hero p{margin:15px 0;max-width:520px;opacity:.85}
 
-.hero h2{
-  font-size:42px;
-  font-weight:400;
-}
-
-.hero p{
-  margin:18px 0;
-  max-width:520px;
-  opacity:.85;
-}
-
+/* BUSCA */
 .search-box{
-  margin:20px 0;
+  max-width:600px;margin:30px auto 0;
 }
-
 .search-box input{
-  width:100%;
-  max-width:420px;
-  padding:14px 18px;
-  border-radius:30px;
-  border:none;
-  outline:none;
-  background:#2a2a2a;
-  color:#fff;
-}
-
-.hero button{
-  background:var(--gold);
-  color:#000;
-  border:none;
-  padding:14px 36px;
-  border-radius:30px;
-  cursor:pointer;
+  width:100%;padding:14px 20px;
+  border-radius:30px;border:none;
+  background:#1f1f1f;color:#fff;
+  outline:none;font-size:14px
 }
 
 /* SLIDER */
-.slider{
-  position:relative;
-  background:#2a2a2a;
-  border-radius:22px;
-  overflow:hidden;
-  height:300px;
-}
+.slider-wrapper{max-width:1100px;margin:40px auto;position:relative}
+.slider{height:420px;border-radius:22px;overflow:hidden;position:relative}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:.6s}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
 
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:.6s;
-}
-
-.slide.active{
-  opacity:1;
-}
-
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.slider-btn{
-  position:absolute;
-  top:50%;
+.slider-arrow{
+  position:absolute;top:50%;
   transform:translateY(-50%);
-  background:rgba(0,0,0,.6);
-  color:#fff;
-  border:none;
-  font-size:22px;
-  padding:8px 14px;
-  cursor:pointer;
+  background:none;border:none;
+  font-size:42px;color:var(--space-gray);
+  cursor:pointer;z-index:10
 }
-
-.prev{left:10px;}
-.next{right:10px;}
+.left{left:-55px}
+.right{right:-55px}
 
 /* LOJA */
-.store{
-  display:none;
-  padding:40px 30px 80px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.store-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.back-btn{
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  padding:8px 18px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-.store h3{
-  font-size:32px;
-}
+.store{display:none;padding:40px 30px 80px;max-width:1200px;margin:auto}
+.store-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.back-btn{background:none;border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:20px}
 
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:30px;
+  gap:30px
 }
-
 .product{
-  background:var(--gray);
-  border-radius:22px;
-  padding:20px;
-  text-align:center;
+  background:var(--gray);padding:20px;border-radius:22px;
+  text-align:center;transition:.3s
+}
+.product:hover{transform:translateY(-6px)}
+.product img{width:100%;height:260px;object-fit:cover;border-radius:16px;margin-bottom:15px}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;bottom:20px;right:20px;
+  background:#25D366;color:#fff;
+  width:56px;height:56px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;text-decoration:none;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
+  z-index:999
 }
 
-.product img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:16px;
-  margin-bottom:15px;
-}
-
-.product button{
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  padding:10px 22px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;}
+@media(max-width:768px){
+  .hero h2{font-size:32px}
+  .slider{height:240px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="top-bar">
-🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
-</div>
+<div class="top-bar">🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF</div>
 
 <header>
   <div class="logo-area">
@@ -270,37 +126,34 @@ header{
 <div class="side-menu" id="menu">
   <a href="#" onclick="toggleSub()">Loja ▾</a>
   <div class="submenu" id="submenu">
-    <a href="#" onclick="openStore('Jaleco Masculino')">Jaleco Masculino</a>
-    <a href="#" onclick="openStore('Jaleco Feminino')">Jaleco Feminino</a>
-    <a href="#" onclick="openStore('Uniformes')">Uniformes</a>
-    <a href="#" onclick="openStore('Aventais')">Aventais</a>
+    <a onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
+    <a onclick="openStore('Jalecos Femininos')">Jalecos Femininos</a>
+    <a onclick="openStore('Uniformes')">Uniformes</a>
+    <a onclick="openStore('Aventais')">Aventais</a>
   </div>
-  <a href="#">Suporte</a>
-  <a href="#">Sobre Nós</a>
+  <a>Suporte</a>
+  <a>Sobre Nós</a>
 </div>
 
 <section class="hero" id="home">
-  <div>
-    <h2>Elegância que veste<br>o profissional</h2>
-    <p>Acabamentos de alto padrão pensados para quem exige excelência.</p>
+  <h2>Elegância que veste o profissional</h2>
+  <p>Qualidade, durabilidade e acabamento profissional.</p>
 
-    <div class="search-box">
-      <input type="text" id="search" placeholder="Pesquisar produtos..." onkeydown="if(event.key==='Enter') searchProduct()">
-    </div>
-
-    <button onclick="openStore('Jaleco Masculino')">Ver Produtos</button>
+  <div class="search-box">
+    <input type="text" placeholder="Buscar por jalecos, uniformes, aventais..." onkeyup="searchProduct(event)">
   </div>
+</section>
 
-  <div class="slider">
+<div class="slider-wrapper">
+  <button class="slider-arrow left" onclick="prevSlide()">‹</button>
+  <div class="slider" id="slider">
     <div class="slide active"><img src="assets/img/imagem-1.png"></div>
     <div class="slide"><img src="assets/img/imagem-2.png"></div>
     <div class="slide"><img src="assets/img/imagem-3.png"></div>
     <div class="slide"><img src="assets/img/imagem-4.png"></div>
-
-    <button class="slider-btn prev" onclick="prevSlide()">‹</button>
-    <button class="slider-btn next" onclick="nextSlide()">›</button>
   </div>
-</section>
+  <button class="slider-arrow right" onclick="nextSlide()">›</button>
+</div>
 
 <section class="store" id="store">
   <div class="store-top">
@@ -310,72 +163,70 @@ header{
   <div class="products" id="products"></div>
 </section>
 
+<a class="whatsapp" href="https://wa.me/5541998096090" target="_blank">💬</a>
+
 <script>
-let menuOpen=false;
-
+/* MENU */
 function toggleMenu(){
-  menuOpen=!menuOpen;
-  document.getElementById("menu").classList.toggle("active");
-  document.getElementById("menuBtn").innerText = menuOpen ? "✕" : "☰";
+  menu.classList.toggle("active");
+  menuBtn.textContent = menu.classList.contains("active") ? "✕" : "☰";
 }
-
 function toggleSub(){
-  const sub=document.getElementById("submenu");
-  sub.style.display=sub.style.display==="block"?"none":"block";
+  submenu.style.display = submenu.style.display==="block"?"none":"block";
 }
 
-function openStore(title){
-  toggleMenu();
-  document.getElementById("home").style.display="none";
-  document.getElementById("store").style.display="block";
-  document.getElementById("storeTitle").innerText=title;
-
-  const c=document.getElementById("products");
-  c.innerHTML="";
-  for(let i=1;i<=6;i++){
-    c.innerHTML+=`
-    <div class="product">
-      <img src="assets/img/placeholder.png">
-      <h4>${title} ${i}</h4>
-      <span>R$ 100,00</span>
-      <button onclick="window.open('https://wa.me/5541998096090')">Comprar no WhatsApp</button>
-    </div>`;
+/* BUSCA */
+function searchProduct(e){
+  if(e.key==="Enter"){
+    const v=e.target.value.toLowerCase();
+    if(v.includes("fem")) openStore("Jalecos Femininos");
+    else if(v.includes("masc")) openStore("Jalecos Masculinos");
+    else if(v.includes("av")) openStore("Aventais");
+    else openStore("Uniformes");
   }
 }
 
+/* LOJA */
+function openStore(title){
+  menu.classList.remove("active");
+  menuBtn.textContent="☰";
+  home.style.display="none";
+  document.querySelector(".slider-wrapper").style.display="none";
+  store.style.display="block";
+  storeTitle.innerText=title;
+  products.innerHTML="";
+  for(let i=1;i<=6;i++){
+    products.innerHTML+=`
+      <div class="product">
+        <img src="assets/img/placeholder.png">
+        <h4>${title} ${i}</h4>
+        <span>R$ 100,00</span>
+      </div>`;
+  }
+}
 function goHome(){
-  document.getElementById("store").style.display="none";
-  document.getElementById("home").style.display="grid";
+  store.style.display="none";
+  home.style.display="block";
+  document.querySelector(".slider-wrapper").style.display="block";
 }
 
-function searchProduct(){
-  const q=document.getElementById("search").value.toLowerCase();
-  if(q.includes("femin")) openStore("Jaleco Feminino");
-  else if(q.includes("masc")) openStore("Jaleco Masculino");
-  else if(q.includes("avental")) openStore("Aventais");
-  else openStore("Uniformes");
-}
-
-/* SLIDER */
-let index=0;
-const slides=document.querySelectorAll(".slide");
-
-function showSlide(i){
+/* SLIDER + SWIPE */
+let current=0,slides=document.querySelectorAll(".slide");
+function show(i){
   slides.forEach(s=>s.classList.remove("active"));
   slides[i].classList.add("active");
 }
-
-function nextSlide(){
-  index=(index+1)%slides.length;
-  showSlide(index);
-}
-
-function prevSlide(){
-  index=(index-1+slides.length)%slides.length;
-  showSlide(index);
-}
-
+function nextSlide(){current=(current+1)%slides.length;show(current)}
+function prevSlide(){current=(current-1+slides.length)%slides.length;show(current)}
 setInterval(nextSlide,3000);
+
+let startX=0;
+slider.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+slider.addEventListener("touchend",e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(startX-endX>50) nextSlide();
+  if(endX-startX>50) prevSlide();
+});
 </script>
 
 </body>
