@@ -13,6 +13,7 @@
   --black:#000;
   --gray:#1a1a1a;
   --space:#7a7a7a;
+  --overlay: rgba(0,0,0,0.8);
 }
 
 *{
@@ -35,19 +36,19 @@ body{
   padding:8px;
   font-size:13px;
   position: relative;
-  z-index: 1200;
+  z-index: 1001;
 }
 
-/* HEADER - Ajustado para ficar sempre no topo */
+/* HEADER FIXO */
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 30px;
+  padding:15px 30px;
   position: sticky;
   top: 0;
   background: var(--black);
-  z-index:1100; /* Fica acima do menu lateral */
+  z-index:1000;
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
 }
 
@@ -57,10 +58,10 @@ header{
   gap:12px;
 }
 
-.logo-area img{height:50px;}
+.logo-area img{height:45px;}
 
 .logo-area h1{
-  font-size:20px;
+  font-size:18px;
   letter-spacing:2px;
   font-weight:500;
 }
@@ -68,58 +69,63 @@ header{
 .menu-btn{
   font-size:28px;
   cursor:pointer;
-  z-index:1101; /* Garante que o botão de fechar/abrir seja clicável */
-  width: 30px;
-  text-align: center;
+  z-index:2001; /* Botão sempre acima de tudo */
+  color: var(--gold);
+  transition: 0.3s;
 }
 
-/* MENU LATERAL - Ajustado para não sobrepor o título */
+/* MENU LATERAL - CORRIGIDO */
 .side-menu{
   position:fixed;
   top:0;
   right:-100%;
-  width:280px;
+  width:320px;
   height:100vh;
   background:#0f0f0f;
-  padding:100px 30px 30px; /* Padding superior para os itens aparecerem abaixo do header */
-  transition:.4s;
-  z-index:1000;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+  padding:100px 40px 40px;
+  transition:.4s ease-in-out;
+  z-index:2000; /* Camada superior */
+  box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
 }
 
 .side-menu.active{right:0;}
 
 .side-menu a{
   display:block;
-  margin-bottom:20px;
+  margin-bottom:25px;
   text-decoration:none;
   color:var(--gold);
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 400;
   cursor: pointer;
 }
 
 .submenu{
-  margin-left:15px;
+  margin-left:20px;
   display:none;
   margin-bottom: 20px;
+  border-left: 1px solid var(--gold);
+  padding-left: 15px;
 }
 
 .submenu a {
-    font-size: 15px;
-    margin-bottom: 12px;
-    opacity: 0.8;
+    font-size: 16px;
+    margin-bottom: 15px;
+    opacity: 0.7;
 }
 
 /* HERO */
 .hero{
-  padding:50px 30px 10px;
+  padding:60px 20px 20px;
   max-width:1200px;
   margin:auto;
   text-align:center;
 }
 
 .hero h2{
-  font-size:42px;
+  font-size: clamp(28px, 5vw, 42px);
   font-weight:400;
 }
 
@@ -132,44 +138,45 @@ header{
 /* BUSCA */
 .search-box{
   max-width:600px;
-  margin:25px auto 0;
+  margin:30px auto 0;
 }
 
 .search-box input{
   width:100%;
-  padding:14px 22px;
+  padding:16px 25px;
   border-radius:30px;
-  border:none;
-  background:#1f1f1f;
+  border:1px solid rgba(212, 175, 55, 0.2);
+  background:#111;
   color:#fff;
   font-size:14px;
   outline:none;
 }
 
-/* ===== SLIDER 1:1 ===== */
+/* SLIDER 1:1 */
 .slider-wrapper{
   width:100%;
   max-width:1200px;
-  margin:60px auto 0;
+  margin:50px auto;
   position:relative;
-  padding:0 30px;
   display:flex;
   justify-content:center;
+  align-items: center;
 }
 
 .slider{
-  width:520px;
-  height:520px; 
+  width: min(500px, 85vw);
+  aspect-ratio: 1/1;
   overflow:hidden;
-  border-radius:28px;
+  border-radius:20px;
   position:relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity .7s ease;
+  transition:opacity .8s ease;
 }
 
 .slide.active{opacity:1;}
@@ -180,25 +187,20 @@ header{
   object-fit:cover;
 }
 
-/* SETAS */
 .slider-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
   background:none;
   border:none;
-  font-size:48px;
-  color:var(--space);
+  font-size:40px;
+  color:var(--gold);
   cursor:pointer;
+  padding: 10px;
+  z-index: 10;
 }
-
-.slider-arrow.left{left:-60px;}
-.slider-arrow.right{right:-60px;}
 
 /* LOJA */
 .store{
   display:none;
-  padding:60px 30px 80px;
+  padding:40px 20px;
   max-width:1200px;
   margin:auto;
 }
@@ -207,71 +209,70 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
 
 .back-btn{
   background:none;
   border:1px solid var(--gold);
   color:var(--gold);
-  padding:8px 18px;
-  border-radius:20px;
+  padding:10px 20px;
+  border-radius:25px;
   cursor:pointer;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:25px;
 }
 
 .product{
   background:var(--gray);
-  padding:20px;
-  border-radius:22px;
+  padding:15px;
+  border-radius:15px;
   text-align:center;
+  transition: 0.3s;
 }
 
 .product img{
   width:100%;
-  height:280px;
+  aspect-ratio: 1/1;
   object-fit:cover;
-  border-radius:18px;
+  border-radius:10px;
   margin-bottom:15px;
 }
 
 /* WHATSAPP */
 .whatsapp{
   position:fixed;
-  bottom:20px;
-  right:20px;
-  width:56px;
-  height:56px;
+  bottom:25px;
+  right:25px;
+  width:60px;
+  height:60px;
   background:#25D366;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
+  font-size:30px;
   text-decoration:none;
   color:#fff;
   z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* MOBILE */
+/* RESPONSIVIDADE WEB/DESKTOP */
+@media(min-width:1024px){
+  .menu-btn:hover { color: #fff; }
+  .logo-area h1 { font-size: 22px; }
+}
+
 @media(max-width:768px){
-  .hero h2{font-size:32px;}
-
-  .slider{
-    width:280px;
-    height:280px;
-  }
-
-  .slider-arrow.left{left:-40px;}
-  .slider-arrow.right{right:-40px;}
-  
-  .logo-area h1 { font-size: 16px; }
-  .logo-area img { height: 40px; }
+  header { padding: 15px; }
+  .logo-area h1 { font-size: 14px; }
+  .logo-area img { height: 35px; }
+  .side-menu { width: 80%; }
 }
 </style>
 </head>
@@ -282,7 +283,7 @@ header{
 🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
 </div>
 
-<header>
+<header id="mainHeader">
   <div class="logo-area">
     <img src="assets/img/logo.png" alt="Logo">
     <h1>LE BLANC UNIFORMES</h1>
@@ -302,79 +303,72 @@ header{
   <a>Sobre Nós</a>
 </div>
 
-<section class="hero" id="home">
-  <h2>Elegância que veste o profissional</h2>
-  <p>Qualidade, durabilidade e acabamento de alto padrão.</p>
+<main id="mainContent">
+    <section class="hero" id="home">
+      <h2>Elegância que veste o profissional</h2>
+      <p>Qualidade, durabilidade e acabamento de alto padrão.</p>
 
-  <div class="search-box">
-    <input type="text" placeholder="Buscar por jalecos, uniformes, aventais..." onkeyup="searchProduct(event)">
-  </div>
-</section>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar por jalecos, uniformes, aventais..." onkeyup="searchProduct(event)">
+      </div>
+    </section>
 
-<div class="slider-wrapper">
-  <button class="slider-arrow left" onclick="prevSlide()">‹</button>
+    <div class="slider-wrapper" id="sliderArea">
+      <button class="slider-arrow" onclick="prevSlide()">‹</button>
+      <div class="slider" id="slider">
+        <div class="slide active"><img src="assets/img/imagem-1.png"></div>
+        <div class="slide"><img src="assets/img/imagem-2.png"></div>
+        <div class="slide"><img src="assets/img/imagem-3.png"></div>
+        <div class="slide"><img src="assets/img/imagem-4.png"></div>
+      </div>
+      <button class="slider-arrow" onclick="nextSlide()">›</button>
+    </div>
 
-  <div class="slider" id="slider">
-    <div class="slide active"><img src="assets/img/imagem-1.png"></div>
-    <div class="slide"><img src="assets/img/imagem-2.png"></div>
-    <div class="slide"><img src="assets/img/imagem-3.png"></div>
-    <div class="slide"><img src="assets/img/imagem-4.png"></div>
-  </div>
-
-  <button class="slider-arrow right" onclick="nextSlide()">›</button>
-</div>
-
-<section class="store" id="store">
-  <div class="store-top">
-    <h3 id="storeTitle"></h3>
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
-  </div>
-  <div class="products" id="products"></div>
-</section>
+    <section class="store" id="store">
+      <div class="store-top">
+        <h3 id="storeTitle"></h3>
+        <button class="back-btn" onclick="goHome()">← Voltar</button>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
+</main>
 
 <a class="whatsapp" href="https://wa.me/5541998096090" target="_blank">💬</a>
 
 <script>
-/* MENU */
 const menu = document.getElementById("menu");
 const menuBtn = document.getElementById("menuBtn");
 const submenu = document.getElementById("submenu");
 const home = document.getElementById("home");
 const store = document.getElementById("store");
-const storeTitle = document.getElementById("storeTitle");
-const products = document.getElementById("products");
+const sliderArea = document.getElementById("sliderArea");
 
 function toggleMenu(){
   menu.classList.toggle("active");
-  menuBtn.textContent = menu.classList.contains("active") ? "✕" : "☰";
+  if(menu.classList.contains("active")){
+      menuBtn.textContent = "✕";
+      document.body.style.overflow = "hidden"; // Trava o scroll ao abrir menu
+  } else {
+      menuBtn.textContent = "☰";
+      document.body.style.overflow = "auto";
+  }
 }
 
 function toggleSub(){
   submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
 
-/* BUSCA */
-function searchProduct(e){
-  if(e.key === "Enter"){
-    const v = e.target.value.toLowerCase();
-    if(v.includes("fem")) openStore("Jalecos Femininos");
-    else if(v.includes("masc")) openStore("Jalecos Masculinos");
-    else if(v.includes("av")) openStore("Aventais");
-    else openStore("Uniformes");
-  }
-}
-
-/* LOJA */
 function openStore(title){
-  menu.classList.remove("active");
-  menuBtn.textContent = "☰";
+  toggleMenu();
   home.style.display = "none";
-  document.querySelector(".slider-wrapper").style.display = "none";
+  sliderArea.style.display = "none";
   store.style.display = "block";
-  storeTitle.innerText = title;
-  products.innerHTML = "";
+  document.getElementById("storeTitle").innerText = title;
+  
+  const productsDiv = document.getElementById("products");
+  productsDiv.innerHTML = "";
   for(let i=1; i<=6; i++){
-    products.innerHTML += `
+    productsDiv.innerHTML += `
       <div class="product">
         <img src="assets/img/placeholder.png">
         <h4>${title} ${i}</h4>
@@ -387,7 +381,7 @@ function openStore(title){
 function goHome(){
   store.style.display = "none";
   home.style.display = "block";
-  document.querySelector(".slider-wrapper").style.display = "flex";
+  sliderArea.style.display = "flex";
   window.scrollTo(0,0);
 }
 
@@ -410,16 +404,13 @@ function prevSlide(){
   showSlide(current);
 }
 
-setInterval(nextSlide, 4000);
+setInterval(nextSlide, 5000);
 
-/* SWIPE */
-let startX = 0;
-const sliderElem = document.getElementById("slider");
-sliderElem.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-sliderElem.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  if(startX - endX > 50) nextSlide();
-  if(endX - startX > 50) prevSlide();
+// Fecha menu ao clicar fora (opcional mas recomendado)
+document.addEventListener('click', (e) => {
+    if (menu.classList.contains('active') && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        toggleMenu();
+    }
 });
 </script>
 
