@@ -32,7 +32,6 @@ body{
   text-align:center;
   padding:8px;
   font-size:13px;
-  letter-spacing:1px;
 }
 
 /* HEADER */
@@ -109,7 +108,6 @@ header{
 .hero h2{
   font-size:42px;
   font-weight:400;
-  line-height:1.2;
 }
 
 .hero p{
@@ -125,31 +123,45 @@ header{
   padding:14px 36px;
   border-radius:30px;
   cursor:pointer;
-  font-size:14px;
 }
 
 /* LOJA */
 .store{
   display:none;
-  padding:60px 30px;
+  padding:40px 30px 80px;
   max-width:1200px;
   margin:auto;
 }
 
+.store-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.back-btn{
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  padding:8px 18px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
 .store h3{
   font-size:32px;
-  margin-bottom:30px;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
   gap:30px;
 }
 
 .product{
   background:var(--gray);
-  border-radius:20px;
+  border-radius:22px;
   padding:20px;
   text-align:center;
   transition:.3s;
@@ -161,7 +173,9 @@ header{
 
 .product img{
   width:100%;
-  border-radius:15px;
+  height:260px;
+  object-fit:cover;
+  border-radius:16px;
   margin-bottom:15px;
 }
 
@@ -179,7 +193,7 @@ header{
   background:transparent;
   border:1px solid var(--gold);
   color:var(--gold);
-  padding:10px 20px;
+  padding:10px 22px;
   border-radius:20px;
   cursor:pointer;
 }
@@ -208,9 +222,9 @@ header{
 <div class="side-menu" id="menu">
   <a href="#" onclick="toggleSub()">Loja ▾</a>
   <div class="submenu" id="submenu">
-    <a href="#" onclick="openStore('jaleco')">Jalecos</a>
-    <a href="#" onclick="openStore('uniforme')">Uniformes</a>
-    <a href="#" onclick="openStore('avental')">Aventais</a>
+    <a href="#" onclick="openStore('Jalecos')">Jalecos</a>
+    <a href="#" onclick="openStore('Uniformes Profissionais')">Uniformes</a>
+    <a href="#" onclick="openStore('Aventais')">Aventais</a>
   </div>
   <a href="#">Suporte</a>
   <a href="#">Sobre Nós</a>
@@ -219,52 +233,55 @@ header{
 <section class="hero" id="home">
   <h2>Elegância que veste<br>o profissional</h2>
   <p>Uniformes premium com design moderno, conforto e identidade profissional.</p>
-  <button onclick="openStore('jaleco')">Ver Produtos</button>
+  <button onclick="openStore('Jalecos')">Ver Produtos</button>
 </section>
 
 <section class="store" id="store">
-  <h3 id="storeTitle"></h3>
+  <div class="store-top">
+    <h3 id="storeTitle"></h3>
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+  </div>
+
   <div class="products" id="products"></div>
 </section>
 
 <script>
-const productsData = {
-  jaleco: ["Jaleco Premium","Jaleco Slim","Jaleco Clássico"],
-  uniforme:["Uniforme Social","Uniforme Profissional"],
-  avental:["Avental Executivo","Avental Premium"]
-};
-
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
 }
 
 function toggleSub(){
-  document.getElementById("submenu").style.display =
-  document.getElementById("submenu").style.display === "block" ? "none" : "block";
+  const sub = document.getElementById("submenu");
+  sub.style.display = sub.style.display === "block" ? "none" : "block";
 }
 
-function openStore(type){
+function openStore(title){
   document.getElementById("menu").classList.remove("active");
   document.getElementById("home").style.display="none";
   document.getElementById("store").style.display="block";
 
-  document.getElementById("storeTitle").innerText = type.toUpperCase();
+  document.getElementById("storeTitle").innerText = title;
 
   const container = document.getElementById("products");
   container.innerHTML = "";
 
-  productsData[type].forEach(p=>{
+  for(let i=1;i<=6;i++){
     container.innerHTML += `
       <div class="product">
         <img src="assets/img/placeholder.png">
-        <h4>${p}</h4>
+        <h4>${title} ${i}</h4>
         <span>R$ 100,00</span>
         <button onclick="window.open('https://wa.me/5541998096090')">
           Comprar no WhatsApp
         </button>
       </div>
     `;
-  });
+  }
+}
+
+function goHome(){
+  document.getElementById("store").style.display="none";
+  document.getElementById("home").style.display="block";
 }
 </script>
 
