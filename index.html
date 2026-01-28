@@ -2,247 +2,147 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Blanc Uniformes</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --gold:#d4af37;
-  --black:#000;
-  --gray:#1a1a1a;
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+body {
+  background: #000;
+  color: #d4af37;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
-}
-
-body{
-  background:var(--black);
-  color:var(--gold);
-}
-
-/* FAIXA TOPO */
-.top-bar{
-  background:#222;
-  text-align:center;
-  padding:8px;
-  font-size:13px;
+/* TOPO */
+.top-bar {
+  background: #222;
+  color: #d4af37;
+  text-align: center;
+  padding: 6px;
+  font-size: 14px;
 }
 
 /* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 30px;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  position: relative;
+  z-index: 1000;
 }
 
-.logo-area{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.logo {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.logo-area img{
-  height:50px;
-}
-
-.logo-area h1{
-  font-size:20px;
-  letter-spacing:2px;
-  font-weight:500;
-}
-
-.menu-btn{
-  font-size:26px;
-  cursor:pointer;
+/* HAMBURGUER */
+.menu-btn {
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 2001;
 }
 
 /* MENU LATERAL */
-.side-menu{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:280px;
-  height:100vh;
-  background:#0f0f0f;
-  padding:30px;
-  transition:.4s;
-  z-index:999;
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: #111;
+  padding: 80px 20px;
+  transition: 0.3s;
+  z-index: 2000;
 }
 
-.side-menu.active{
-  right:0;
-}
-
-.side-menu a{
-  display:block;
-  margin-bottom:18px;
-  text-decoration:none;
-  color:var(--gold);
-  font-size:16px;
-}
-
-.submenu{
-  margin-left:15px;
-  display:none;
-}
-
-.submenu a{
-  font-size:14px;
-  opacity:.85;
+.side-menu a {
+  display: block;
+  color: #d4af37;
+  text-decoration: none;
+  margin-bottom: 18px;
 }
 
 /* HERO */
-.hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  padding:80px 30px;
-  max-width:1200px;
-  margin:auto;
-  align-items:center;
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+  gap: 40px;
+  align-items: center;
 }
 
-.hero h2{
-  font-size:42px;
-  font-weight:400;
+/* PESQUISA */
+.search-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
 }
 
-.hero p{
-  margin:18px 0;
-  max-width:520px;
-  opacity:.85;
+.search-box input {
+  width: 420px;
+  max-width: 90%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: none;
+  background: #333;
+  color: #fff;
+  font-size: 16px;
 }
 
-.hero .quality{
-  font-size:14px;
-  opacity:.75;
-  margin-bottom:25px;
+/* TEXTO */
+.hero-text h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
 }
 
-.hero button{
-  background:var(--gold);
-  color:#000;
-  border:none;
-  padding:14px 36px;
-  border-radius:30px;
-  cursor:pointer;
+.hero-text p {
+  color: #aaa;
+  margin-bottom: 20px;
 }
 
-/* SEARCH */
-.search-box{
-  margin:20px 0;
-}
-
-.search-box input{
-  width:100%;
-  max-width:360px;
-  padding:12px 18px;
-  border-radius:30px;
-  border:none;
+.hero-text button {
+  background: #d4af37;
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 /* SLIDER */
-.slider{
-  position:relative;
-  width:100%;
-  height:380px;
-  border-radius:20px;
-  overflow:hidden;
+.slider {
+  background: #666;
+  height: 280px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
 }
 
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:.6s;
+.slider button {
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
-.slide.active{
-  opacity:1;
-}
+.prev { left: 10px; }
+.next { right: 10px; }
 
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.slider button{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,.6);
-  border:none;
-  color:#fff;
-  font-size:22px;
-  padding:8px 14px;
-  cursor:pointer;
-}
-
-.prev{left:10px;}
-.next{right:10px;}
-
-/* LOJA */
-.store{
-  display:none;
-  padding:40px 30px 80px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.store-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:30px;
-}
-
-.product{
-  background:var(--gray);
-  border-radius:22px;
-  padding:20px;
-  text-align:center;
-}
-
-.product img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:16px;
-  margin-bottom:15px;
-}
-
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:#25d366;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  color:#fff;
-  text-decoration:none;
-}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;}
+/* MOBILE */
+@media(max-width: 900px){
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 </style>
 </head>
@@ -250,117 +150,53 @@ header{
 <body>
 
 <div class="top-bar">
-🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
+🚚 Enviamos para todo o Brasil - Pagamento à vista 3% OFF
 </div>
 
 <header>
-  <div class="logo-area">
-    <img src="assets/img/logo.png">
-    <h1>LE BLANC UNIFORMES</h1>
-  </div>
-  <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</div>
+  <div class="logo">LE BLANC UNIFORMES</div>
+  <div class="menu-btn" id="menuBtn">☰</div>
 </header>
 
-<div class="side-menu" id="menu">
-  <a href="#" onclick="toggleSub('loja')">Loja ▾</a>
-  <div class="submenu" id="loja">
-    <a href="#" onclick="openStore('Jaleco Masculino')">Jaleco Masculino</a>
-    <a href="#" onclick="openStore('Jaleco Feminino')">Jaleco Feminino</a>
-    <a href="#" onclick="openStore('Uniformes')">Uniformes</a>
-    <a href="#" onclick="openStore('Aventais')">Aventais</a>
-  </div>
+<nav class="side-menu" id="sideMenu">
+  <a href="#">Jaleco Masculino</a>
+  <a href="#">Jaleco Feminino</a>
+  <a href="#">Uniformes</a>
+  <a href="#">Aventais</a>
   <a href="#">Suporte</a>
   <a href="#">Sobre Nós</a>
+</nav>
+
+<!-- PESQUISA NA POSIÇÃO CORRETA -->
+<div class="search-box">
+  <input type="text" placeholder="O que você procura? Ex: Jaleco Feminino">
 </div>
 
-<section class="hero" id="home">
-  <div>
-    <h2>Elegância que veste<br>o profissional</h2>
-    <p class="quality">Acabamentos de alto padrão pensados para quem exige excelência.</p>
-
-    <div class="search-box">
-      <input type="text" placeholder="Buscar jalecos, uniformes..." onkeydown="search(event)">
-    </div>
-
-    <button onclick="openStore('Jalecos')">Ver Produtos</button>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Elegância que veste<br>o profissional</h1>
+    <p>Acabamentos de alto padrão pensados para quem exige excelência.</p>
+    <button>Ver Produtos</button>
   </div>
 
   <div class="slider">
-    <div class="slide active"><img src="assets/img/placeholder.png"></div>
-    <div class="slide"><img src="assets/img/placeholder.png"></div>
-    <div class="slide"><img src="assets/img/placeholder.png"></div>
-    <button class="prev" onclick="changeSlide(-1)">❮</button>
-    <button class="next" onclick="changeSlide(1)">❯</button>
+    <button class="prev">‹</button>
+    <div>Imagem em Breve</div>
+    <button class="next">›</button>
   </div>
 </section>
-
-<section class="store" id="store">
-  <div class="store-top">
-    <h3 id="storeTitle"></h3>
-    <button onclick="goHome()">← Voltar</button>
-  </div>
-  <div class="products" id="products"></div>
-</section>
-
-<a class="whatsapp" href="https://wa.me/5541998096090" target="_blank">🟢</a>
 
 <script>
-let slideIndex=0;
-const slides=document.querySelectorAll('.slide');
+const menuBtn = document.getElementById("menuBtn");
+const sideMenu = document.getElementById("sideMenu");
 
-setInterval(()=>changeSlide(1),3000);
+let aberto = false;
 
-function changeSlide(dir){
-  slides[slideIndex].classList.remove('active');
-  slideIndex=(slideIndex+dir+slides.length)%slides.length;
-  slides[slideIndex].classList.add('active');
-}
-
-function toggleMenu(){
-  const menu=document.getElementById("menu");
-  const btn=document.getElementById("menuBtn");
-  menu.classList.toggle("active");
-  btn.innerHTML = menu.classList.contains("active") ? "✕" : "☰";
-}
-
-function toggleSub(id){
-  const el=document.getElementById(id);
-  el.style.display=el.style.display==="block"?"none":"block";
-}
-
-function openStore(title){
-  toggleMenu();
-  document.getElementById("home").style.display="none";
-  document.getElementById("store").style.display="block";
-  document.getElementById("storeTitle").innerText=title;
-
-  const c=document.getElementById("products");
-  c.innerHTML="";
-  for(let i=1;i<=6;i++){
-    c.innerHTML+=`
-    <div class="product">
-      <img src="assets/img/placeholder.png">
-      <h4>${title} ${i}</h4>
-      <span>R$ 100,00</span>
-      <button onclick="window.open('https://wa.me/5541998096090')">Comprar no WhatsApp</button>
-    </div>`;
-  }
-}
-
-function goHome(){
-  document.getElementById("store").style.display="none";
-  document.getElementById("home").style.display="grid";
-}
-
-function search(e){
-  if(e.key==="Enter"){
-    const v=e.target.value.toLowerCase();
-    if(v.includes("fem")) openStore("Jaleco Feminino");
-    else if(v.includes("masc")) openStore("Jaleco Masculino");
-    else if(v.includes("avental")) openStore("Aventais");
-    else openStore("Uniformes");
-  }
-}
+menuBtn.onclick = () => {
+  aberto = !aberto;
+  sideMenu.style.right = aberto ? "0" : "-260px";
+  menuBtn.innerText = aberto ? "✕" : "☰";
+};
 </script>
 
 </body>
