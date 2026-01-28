@@ -2,144 +2,90 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Blanc Uniformes</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 body{
+  margin:0;
+  font-family:Arial, sans-serif;
   background:#000;
   color:#d4af37;
-  font-family:'Montserrat',sans-serif;
-  overflow-x:hidden;
 }
 
-/* HEADER */
 header{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:70px;
+  padding:20px;
+  text-align:center;
+  border-bottom:1px solid #333;
+}
+
+header h1{
+  margin:0;
+}
+
+nav{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 25px;
-  z-index:1000;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(6px);
+  justify-content:center;
+  gap:20px;
+  padding:15px;
 }
-.logo{
-  font-family:'Playfair Display',serif;
-  font-size:26px;
-}
-.hamburger{
-  width:30px;
+
+nav button{
+  background:none;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  padding:10px 20px;
   cursor:pointer;
 }
-.hamburger span{
-  display:block;
-  height:2px;
-  background:#d4af37;
-  margin:6px 0;
-  transition:.4s;
-}
-.hamburger.active span:nth-child(1){
-  transform:rotate(45deg) translate(6px,6px);
-}
-.hamburger.active span:nth-child(2){
-  opacity:0;
-}
-.hamburger.active span:nth-child(3){
-  transform:rotate(-45deg) translate(6px,-6px);
-}
 
-/* MENU */
-.menu{
-  position:fixed;
-  left:-100%;
-  top:0;
-  width:100%;
-  height:100vh;
-  background:#000;
-  padding:100px 40px;
-  transition:.5s;
-  z-index:999;
-}
-.menu.active{left:0}
-.menu a{
-  display:block;
-  color:#d4af37;
-  font-size:26px;
-  margin-bottom:20px;
-  text-decoration:none;
-  font-family:'Playfair Display',serif;
-}
-
-/* HERO SLIDES */
-.hero{
-  height:100vh;
-  display:flex;
-  overflow:hidden;
-}
-.slide{
-  min-width:100%;
-  background:url('placeholder.png') center/cover no-repeat;
-  animation:slide 18s infinite;
-}
-@keyframes slide{
-  0%{transform:translateX(0)}
-  33%{transform:translateX(-100%)}
-  66%{transform:translateX(-200%)}
-}
-
-/* SECTIONS */
 section{
-  padding:100px 8%;
-}
-.title{
-  font-family:'Playfair Display',serif;
-  font-size:38px;
-  margin-bottom:40px;
+  padding:40px 10%;
 }
 
-/* PRODUTOS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-.card{
-  background:#111;
-  padding:20px;
-  transition:.4s;
-}
-.card:hover{transform:translateY(-8px)}
-.card img{
-  width:100%;
-}
-.card h3{
-  margin-top:15px;
-  font-weight:400;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 
-/* WHATSAPP */
+.card{
+  background:#111;
+  padding:15px;
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  height:auto;
+}
+
+.back{
+  margin-bottom:20px;
+}
+
+.back button{
+  background:none;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  padding:8px 15px;
+  cursor:pointer;
+}
+
+/* WhatsApp */
 .whatsapp{
   position:fixed;
-  bottom:20px;
   right:20px;
+  bottom:20px;
   background:#25D366;
-  width:60px;
-  height:60px;
+  width:55px;
+  height:55px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:30px;
+  font-size:28px;
   color:#fff;
   text-decoration:none;
-  z-index:1000;
 }
 </style>
 </head>
@@ -147,39 +93,36 @@ section{
 <body>
 
 <header>
-  <div class="logo">Le Blanc</div>
-  <div class="hamburger" onclick="toggleMenu(this)">
-    <span></span><span></span><span></span>
-  </div>
+  <h1>Le Blanc Uniformes</h1>
 </header>
 
-<div class="menu" id="menu">
-  <a href="#">Jalecos</a>
-  <a href="#">Uniformes Hospitalares</a>
-  <a href="#">Linha Premium</a>
-  <a href="#">Contato</a>
-</div>
+<nav>
+  <button onclick="openProducts()">Ver Produtos</button>
+  <button>Contato</button>
+</nav>
 
-<div class="hero">
-  <div class="slide"></div>
-  <div class="slide"></div>
-  <div class="slide"></div>
-</div>
+<section id="home">
+  <h2>Uniformes Profissionais</h2>
+  <p>Qualidade, elegância e personalização para sua profissão.</p>
+</section>
 
-<section>
-  <div class="title">Linha Profissional</div>
+<section id="products" style="display:none;">
+  <div class="back">
+    <button onclick="goBack()">← Voltar ao menu</button>
+  </div>
+
   <div class="products">
     <div class="card">
       <img src="placeholder.png">
-      <h3>Jaleco Premium Feminino</h3>
+      <p>Jaleco Feminino Premium</p>
     </div>
     <div class="card">
       <img src="placeholder.png">
-      <h3>Jaleco Masculino Slim</h3>
+      <p>Jaleco Masculino Slim</p>
     </div>
     <div class="card">
       <img src="placeholder.png">
-      <h3>Jaleco Personalizado</h3>
+      <p>Jaleco Personalizado</p>
     </div>
   </div>
 </section>
@@ -187,11 +130,17 @@ section{
 <a class="whatsapp" href="https://wa.me/5541998096090" target="_blank">🟢</a>
 
 <script>
-function toggleMenu(el){
-  el.classList.toggle('active');
-  document.getElementById('menu').classList.toggle('active');
+function openProducts(){
+  document.getElementById('home').style.display='none';
+  document.getElementById('products').style.display='block';
+}
+
+function goBack(){
+  document.getElementById('products').style.display='none';
+  document.getElementById('home').style.display='block';
 }
 </script>
 
 </body>
 </html>
+
