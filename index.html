@@ -82,7 +82,7 @@ header{
 
 .side-menu a{
   display:block;
-  margin-bottom:20px;
+  margin-bottom:18px;
   text-decoration:none;
   color:var(--gold);
   font-size:16px;
@@ -100,9 +100,13 @@ header{
 
 /* HERO */
 .hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
   padding:80px 30px;
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
+  align-items:center;
 }
 
 .hero h2{
@@ -111,9 +115,15 @@ header{
 }
 
 .hero p{
-  margin:20px 0 30px;
+  margin:18px 0;
   max-width:520px;
   opacity:.85;
+}
+
+.hero .quality{
+  font-size:14px;
+  opacity:.75;
+  margin-bottom:25px;
 }
 
 .hero button{
@@ -124,6 +134,60 @@ header{
   border-radius:30px;
   cursor:pointer;
 }
+
+/* SEARCH */
+.search-box{
+  margin:20px 0;
+}
+
+.search-box input{
+  width:100%;
+  max-width:360px;
+  padding:12px 18px;
+  border-radius:30px;
+  border:none;
+}
+
+/* SLIDER */
+.slider{
+  position:relative;
+  width:100%;
+  height:380px;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:.6s;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.slider button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.6);
+  border:none;
+  color:#fff;
+  font-size:22px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
 
 /* LOJA */
 .store{
@@ -140,19 +204,6 @@ header{
   margin-bottom:30px;
 }
 
-.back-btn{
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  padding:8px 18px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-.store h3{
-  font-size:32px;
-}
-
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
@@ -164,11 +215,6 @@ header{
   border-radius:22px;
   padding:20px;
   text-align:center;
-  transition:.3s;
-}
-
-.product:hover{
-  transform:translateY(-6px);
 }
 
 .product img{
@@ -179,28 +225,24 @@ header{
   margin-bottom:15px;
 }
 
-.product h4{
-  font-size:16px;
-  margin-bottom:8px;
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#25d366;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:#fff;
+  text-decoration:none;
 }
 
-.product span{
-  display:block;
-  margin-bottom:15px;
-}
-
-.product button{
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  padding:10px 22px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-  .hero h2{font-size:32px;}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -216,14 +258,15 @@ header{
     <img src="assets/img/logo.png">
     <h1>LE BLANC UNIFORMES</h1>
   </div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</div>
 </header>
 
 <div class="side-menu" id="menu">
-  <a href="#" onclick="toggleSub()">Loja ▾</a>
-  <div class="submenu" id="submenu">
-    <a href="#" onclick="openStore('Jalecos')">Jalecos</a>
-    <a href="#" onclick="openStore('Uniformes Profissionais')">Uniformes</a>
+  <a href="#" onclick="toggleSub('loja')">Loja ▾</a>
+  <div class="submenu" id="loja">
+    <a href="#" onclick="openStore('Jaleco Masculino')">Jaleco Masculino</a>
+    <a href="#" onclick="openStore('Jaleco Feminino')">Jaleco Feminino</a>
+    <a href="#" onclick="openStore('Uniformes')">Uniformes</a>
     <a href="#" onclick="openStore('Aventais')">Aventais</a>
   </div>
   <a href="#">Suporte</a>
@@ -231,57 +274,92 @@ header{
 </div>
 
 <section class="hero" id="home">
-  <h2>Elegância que veste<br>o profissional</h2>
-  <p>Uniformes premium com design moderno, conforto e identidade profissional.</p>
-  <button onclick="openStore('Jalecos')">Ver Produtos</button>
+  <div>
+    <h2>Elegância que veste<br>o profissional</h2>
+    <p class="quality">Acabamentos de alto padrão pensados para quem exige excelência.</p>
+
+    <div class="search-box">
+      <input type="text" placeholder="Buscar jalecos, uniformes..." onkeydown="search(event)">
+    </div>
+
+    <button onclick="openStore('Jalecos')">Ver Produtos</button>
+  </div>
+
+  <div class="slider">
+    <div class="slide active"><img src="assets/img/placeholder.png"></div>
+    <div class="slide"><img src="assets/img/placeholder.png"></div>
+    <div class="slide"><img src="assets/img/placeholder.png"></div>
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <button class="next" onclick="changeSlide(1)">❯</button>
+  </div>
 </section>
 
 <section class="store" id="store">
   <div class="store-top">
     <h3 id="storeTitle"></h3>
-    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <button onclick="goHome()">← Voltar</button>
   </div>
-
   <div class="products" id="products"></div>
 </section>
 
+<a class="whatsapp" href="https://wa.me/5541998096090" target="_blank">🟢</a>
+
 <script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
+let slideIndex=0;
+const slides=document.querySelectorAll('.slide');
+
+setInterval(()=>changeSlide(1),3000);
+
+function changeSlide(dir){
+  slides[slideIndex].classList.remove('active');
+  slideIndex=(slideIndex+dir+slides.length)%slides.length;
+  slides[slideIndex].classList.add('active');
 }
 
-function toggleSub(){
-  const sub = document.getElementById("submenu");
-  sub.style.display = sub.style.display === "block" ? "none" : "block";
+function toggleMenu(){
+  const menu=document.getElementById("menu");
+  const btn=document.getElementById("menuBtn");
+  menu.classList.toggle("active");
+  btn.innerHTML = menu.classList.contains("active") ? "✕" : "☰";
+}
+
+function toggleSub(id){
+  const el=document.getElementById(id);
+  el.style.display=el.style.display==="block"?"none":"block";
 }
 
 function openStore(title){
-  document.getElementById("menu").classList.remove("active");
+  toggleMenu();
   document.getElementById("home").style.display="none";
   document.getElementById("store").style.display="block";
+  document.getElementById("storeTitle").innerText=title;
 
-  document.getElementById("storeTitle").innerText = title;
-
-  const container = document.getElementById("products");
-  container.innerHTML = "";
-
+  const c=document.getElementById("products");
+  c.innerHTML="";
   for(let i=1;i<=6;i++){
-    container.innerHTML += `
-      <div class="product">
-        <img src="assets/img/placeholder.png">
-        <h4>${title} ${i}</h4>
-        <span>R$ 100,00</span>
-        <button onclick="window.open('https://wa.me/5541998096090')">
-          Comprar no WhatsApp
-        </button>
-      </div>
-    `;
+    c.innerHTML+=`
+    <div class="product">
+      <img src="assets/img/placeholder.png">
+      <h4>${title} ${i}</h4>
+      <span>R$ 100,00</span>
+      <button onclick="window.open('https://wa.me/5541998096090')">Comprar no WhatsApp</button>
+    </div>`;
   }
 }
 
 function goHome(){
   document.getElementById("store").style.display="none";
-  document.getElementById("home").style.display="block";
+  document.getElementById("home").style.display="grid";
+}
+
+function search(e){
+  if(e.key==="Enter"){
+    const v=e.target.value.toLowerCase();
+    if(v.includes("fem")) openStore("Jaleco Feminino");
+    else if(v.includes("masc")) openStore("Jaleco Masculino");
+    else if(v.includes("avental")) openStore("Aventais");
+    else openStore("Uniformes");
+  }
 }
 </script>
 
