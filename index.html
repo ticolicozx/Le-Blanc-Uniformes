@@ -601,7 +601,6 @@ footer a:hover{ text-decoration:underline; }
 
 <header>
   <div class="logo-area" onclick="goHome()" style="cursor:pointer" title="Voltar ao início">
-    <!-- Se você tiver sua logo local, mantenha assets/img/logo.png -->
     <img src="assets/img/logo.png" alt="Le Blanc Logo" width="160" height="44" loading="eager" decoding="async">
     <h1>LE BLANC UNIFORMES</h1>
   </div>
@@ -622,10 +621,13 @@ footer a:hover{ text-decoration:underline; }
 
     <a href="javascript:void(0)" onclick="toggleSub()">Catálogo Loja ▾</a>
     <div class="submenu" id="submenu">
-      <a href="javascript:void(0)" onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
       <a href="javascript:void(0)" onclick="openStore('Jalecos Femininos')">Jalecos Femininos</a>
-      <a href="javascript:void(0)" onclick="openStore('Uniformes Corporativos')">Uniformes Corporativos</a>
-      <a href="javascript:void(0)" onclick="openStore('Aventais Gourmet')">Aventais Gourmet</a>
+      <a href="javascript:void(0)" onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
+      <a href="javascript:void(0)" onclick="openStore('Dólmãs & Aventais')">Dólmãs & Aventais</a>
+      <a href="javascript:void(0)" onclick="openStore('Linha Social')">Linha Social</a>
+      <a href="javascript:void(0)" onclick="openStore('Uniformes Personalizados')">Uniformes Personalizados</a>
+      <a href="javascript:void(0)" onclick="openStore('Uniformes Operacionais')">Uniformes Operacionais</a>
+      <a href="javascript:void(0)" onclick="openStore('Outros')">Outros</a>
     </div>
 
     <a href="#suporte" onclick="safeNav()">Suporte ao Cliente</a>
@@ -634,7 +636,6 @@ footer a:hover{ text-decoration:underline; }
 </div>
 
 <main>
-  <!-- HERO -->
   <section class="hero" id="home">
     <h2>Uniformes que valorizam sua marca</h2>
     <p>Qualidade premium, durabilidade e acabamento impecável para quem quer vestir o time com elegância e credibilidade.</p>
@@ -643,12 +644,8 @@ footer a:hover{ text-decoration:underline; }
       <a class="btn primary" href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> Pedir orçamento
       </a>
-      <a class="btn" href="#catalogo">
-        <i class="fa-solid fa-layer-group"></i> Ver catálogo
-      </a>
-      <a class="btn" href="#sliderArea">
-        <i class="fa-solid fa-images"></i> Ver destaques
-      </a>
+      <a class="btn" href="#catalogo"><i class="fa-solid fa-layer-group"></i> Ver catálogo</a>
+      <a class="btn" href="#sliderArea"><i class="fa-solid fa-images"></i> Ver destaques</a>
     </div>
 
     <div class="benefits" aria-label="Diferenciais Le Blanc">
@@ -660,7 +657,7 @@ footer a:hover{ text-decoration:underline; }
       <div class="benefit">
         <div class="icon"><i class="fa-solid fa-shirt"></i></div>
         <h4>Conforto e durabilidade</h4>
-               <p>Modelagens que vestem bem e tecidos pensados para a rotina de trabalho.</p>
+        <p>Modelagens que vestem bem e tecidos pensados para a rotina de trabalho.</p>
       </div>
       <div class="benefit">
         <div class="icon"><i class="fa-solid fa-truck-fast"></i></div>
@@ -670,40 +667,39 @@ footer a:hover{ text-decoration:underline; }
     </div>
 
     <div class="search-box" id="catalogo">
-      <input type="text" placeholder="Digite e aperte Enter (ex: jaleco feminino, avental, uniforme)" onkeyup="searchProduct(event)" aria-label="Buscar produtos">
+      <input type="text" placeholder="Digite e aperte Enter (ex: jaleco feminino, dolmã, social, operacional)" onkeyup="searchProduct(event)" aria-label="Buscar produtos">
     </div>
   </section>
 
-  <!-- CATEGORIAS (com imagens da web) -->
+  <!-- CATEGORIAS -->
   <div class="section-title">
     <h3>Categorias em destaque</h3>
     <p>Clique para abrir o catálogo</p>
   </div>
 
   <section class="categories" aria-label="Categorias">
-    <!-- Imagens de exemplo: Unsplash Source (livre) -->
-    <div class="cat" onclick="openStore('Jalecos Femininos')" role="button" tabindex="0" aria-label="Abrir Jalecos Femininos">
+    <div class="cat" onclick="openStore('Jalecos Femininos')" role="button" tabindex="0">
       <img src="https://source.unsplash.com/900x900/?doctor,lab,coat,female" alt="Jaleco feminino" loading="lazy" decoding="async">
       <div class="label"><strong>Jalecos Femininos</strong><span>Elegância e presença</span></div>
     </div>
 
-    <div class="cat" onclick="openStore('Jalecos Masculinos')" role="button" tabindex="0" aria-label="Abrir Jalecos Masculinos">
+    <div class="cat" onclick="openStore('Jalecos Masculinos')" role="button" tabindex="0">
       <img src="https://source.unsplash.com/900x900/?doctor,lab,coat,man" alt="Jaleco masculino" loading="lazy" decoding="async">
       <div class="label"><strong>Jalecos Masculinos</strong><span>Profissional e impecável</span></div>
     </div>
 
-    <div class="cat" onclick="openStore('Aventais Gourmet')" role="button" tabindex="0" aria-label="Abrir Aventais Gourmet">
-      <img src="https://source.unsplash.com/900x900/?chef,apron,restaurant" alt="Avental gourmet" loading="lazy" decoding="async">
-      <div class="label"><strong>Aventais Gourmet</strong><span>Estilo na cozinha</span></div>
+    <div class="cat" onclick="openStore('Dólmãs & Aventais')" role="button" tabindex="0">
+      <img src="https://source.unsplash.com/900x900/?chef,apron,uniform" alt="Dólmãs e aventais" loading="lazy" decoding="async">
+      <div class="label"><strong>Dólmãs & Aventais</strong><span>Gastronomia com estilo</span></div>
     </div>
 
-    <div class="cat" onclick="openStore('Uniformes Corporativos')" role="button" tabindex="0" aria-label="Abrir Uniformes Corporativos">
-      <img src="https://source.unsplash.com/900x900/?business,uniform,professional" alt="Uniforme corporativo" loading="lazy" decoding="async">
-      <div class="label"><strong>Uniformes Corporativos</strong><span>Imagem forte de marca</span></div>
+    <div class="cat" onclick="openStore('Linha Social')" role="button" tabindex="0">
+      <img src="https://source.unsplash.com/900x900/?suit,corporate,uniform" alt="Linha social" loading="lazy" decoding="async">
+      <div class="label"><strong>Linha Social</strong><span>Elegância corporativa</span></div>
     </div>
   </section>
 
-  <!-- SLIDER 1:1 (imagens exemplo da web) -->
+  <!-- SLIDER -->
   <div class="slider-wrapper" id="sliderArea" aria-label="Destaques">
     <div class="slider-container">
       <button class="slider-arrow" onclick="prevSlide()" aria-label="Slide anterior">‹</button>
@@ -713,13 +709,13 @@ footer a:hover{ text-decoration:underline; }
           <img src="https://source.unsplash.com/1080x1080/?labcoat,doctor,portrait" alt="Destaque Le Blanc 1" loading="lazy" decoding="async">
         </div>
         <div class="slide">
-          <img src="https://source.unsplash.com/1080x1080/?medical,scrubs,uniform" alt="Destaque Le Blanc 2" loading="lazy" decoding="async">
+          <img src="https://source.unsplash.com/1080x1080/?chef,jacket,uniform" alt="Destaque Le Blanc 2" loading="lazy" decoding="async">
         </div>
         <div class="slide">
-          <img src="https://source.unsplash.com/1080x1080/?chef,uniform,kitchen" alt="Destaque Le Blanc 3" loading="lazy" decoding="async">
+          <img src="https://source.unsplash.com/1080x1080/?business,uniform,team" alt="Destaque Le Blanc 3" loading="lazy" decoding="async">
         </div>
         <div class="slide">
-          <img src="https://source.unsplash.com/1080x1080/?corporate,professional,uniform" alt="Destaque Le Blanc 4" loading="lazy" decoding="async">
+          <img src="https://source.unsplash.com/1080x1080/?workwear,uniform,industry" alt="Destaque Le Blanc 4" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -738,22 +734,31 @@ footer a:hover{ text-decoration:underline; }
     <div class="products" id="products"></div>
   </section>
 
-  <!-- SEÇÕES EXTRAS -->
+  <!-- SUPORTE -->
   <div class="section-title" id="suporte">
     <h3>Suporte ao Cliente</h3>
     <p>Atendimento rápido pelo WhatsApp</p>
   </div>
+
   <section class="benefits" style="margin-top:16px;">
     <div class="benefit">
       <div class="icon"><i class="fa-solid fa-headset"></i></div>
-      <h4>Ajuda para escolher</h4>
-      <p>Te guiamos por modelagem, tecido, bordado e melhor custo-benefício.</p>
+      <h4>Fale com a Le Blanc no WhatsApp</h4>
+      <p>
+        Clique e fale agora: 
+        <a href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F"
+           target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none; font-weight:600;">
+           (41) 99809-6090
+        </a>
+      </p>
     </div>
+
     <div class="benefit">
       <div class="icon"><i class="fa-solid fa-ruler-combined"></i></div>
       <h4>Tamanhos e ajustes</h4>
       <p>Orientação de medidas e personalização para equipe e marca.</p>
     </div>
+
     <div class="benefit">
       <div class="icon"><i class="fa-solid fa-badge-check"></i></div>
       <h4>Qualidade garantida</h4>
@@ -761,14 +766,21 @@ footer a:hover{ text-decoration:underline; }
     </div>
   </section>
 
+  <!-- HISTÓRIA -->
   <div class="section-title" id="historia">
     <h3>Nossa História</h3>
-    <p>Marca premium • identidade forte</p>
+    <p>Desde 2018 • qualidade reconhecida</p>
   </div>
+
   <section style="margin-top:16px; background: rgba(255,255,255,.03); border: var(--border); border-radius: var(--radius); padding:18px; box-shadow: 0 12px 26px rgba(0,0,0,.35);">
     <p style="color:#cfcfcf; font-size:13px;">
-      A Le Blanc nasce com a proposta de elevar a imagem do profissional através de uniformes sofisticados, confortáveis e duráveis.
-      Aqui, cada detalhe importa: caimento, tecido, acabamento e personalização para valorizar a sua marca.
+      Fundada em <strong>2018</strong>, a <strong>Le Blanc Uniformes</strong> nasceu com um propósito claro: elevar a imagem de profissionais e empresas por meio de
+      uniformes que unem <strong>elegância, conforto e durabilidade</strong>. Desde o início, construímos nossa reputação com base em um padrão de qualidade
+      rigoroso — do <strong>corte</strong> ao <strong>acabamento</strong>, da escolha de <strong>tecidos</strong> à <strong>personalização</strong> que valoriza a identidade de cada cliente.
+      <br><br>
+      Ao longo dos anos, evoluímos para atender diferentes segmentos, sempre mantendo a mesma essência: <strong>entregar peças com caimento impecável</strong>,
+      presença marcante e resistência para a rotina de trabalho. Para nós, uniforme não é apenas vestuário — é <strong>posicionamento de marca</strong>. 
+      É por isso que cada pedido é tratado com atenção aos detalhes, agilidade no atendimento e compromisso com um resultado final premium.
     </p>
   </section>
 
@@ -858,10 +870,13 @@ function openStore(title){
 
   // Imagens de produto por categoria (web/Unsplash source)
   const imgQueryByTitle = {
-    "Jalecos Masculinos": "labcoat,doctor,man",
     "Jalecos Femininos": "labcoat,doctor,female",
-    "Uniformes Corporativos": "business,uniform,professional",
-    "Aventais Gourmet": "chef,apron,restaurant"
+    "Jalecos Masculinos": "labcoat,doctor,man",
+    "Dólmãs & Aventais": "chef,jacket,apron,uniform",
+    "Linha Social": "suit,corporate,uniform",
+    "Uniformes Personalizados": "uniform,embroidered,logo",
+    "Uniformes Operacionais": "workwear,industrial,uniform",
+    "Outros": "uniform,professional,clothing"
   };
 
   const q = imgQueryByTitle[title] || "uniform,professional";
@@ -869,7 +884,12 @@ function openStore(title){
   for(let i=1; i<=8; i++){
     const productName = `${title} ${i}`;
     const price = "R$ 189,90";
-    const tag = (title.includes("Jalecos")) ? "Premium" : (title.includes("Aventais") ? "Gourmet" : "Corporativo");
+    const tag =
+      (title.includes("Jalecos")) ? "Premium" :
+      (title.includes("Dólmãs") || title.includes("Aventais")) ? "Gourmet" :
+      (title.includes("Social")) ? "Social" :
+      (title.includes("Personalizados")) ? "Personalizado" :
+      (title.includes("Operacionais")) ? "Operacional" : "Linha";
 
     const msg = `Olá! Quero orçamento do ${productName}. Pode me enviar tamanhos, cores e prazo?`;
     const link = buildWhatsLink(msg);
@@ -961,9 +981,12 @@ function searchProduct(e){
 
     if(v.includes("fem")) openStore("Jalecos Femininos");
     else if(v.includes("masc")) openStore("Jalecos Masculinos");
-    else if(v.includes("avental") || v.includes("gourmet") || v.includes("chef")) openStore("Aventais Gourmet");
-    else if(v.includes("corp") || v.includes("social") || v.includes("empresa")) openStore("Uniformes Corporativos");
-    else openStore("Uniformes Corporativos");
+    else if(v.includes("dolma") || v.includes("dólma") || v.includes("avental") || v.includes("chef")) openStore("Dólmãs & Aventais");
+    else if(v.includes("social") || v.includes("terno") || v.includes("camisa")) openStore("Linha Social");
+    else if(v.includes("personal") || v.includes("bordado") || v.includes("logo")) openStore("Uniformes Personalizados");
+    else if(v.includes("operac") || v.includes("operacional") || v.includes("epi") || v.includes("industr")) openStore("Uniformes Operacionais");
+    else if(v.includes("outros")) openStore("Outros");
+    else openStore("Uniformes Personalizados");
   }
 }
 
