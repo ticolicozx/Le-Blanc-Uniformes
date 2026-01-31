@@ -1,361 +1,564 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Le Blanc Uniformes</title>
 
+<!-- SEO -->
+<meta name="description" content="Le Blanc Uniformes: jalecos, aventais e uniformes premium com acabamento de alto padrão. Uniformes que valorizam sua marca." />
+<meta name="theme-color" content="#000000" />
+<link rel="canonical" href="https://ticolicozx.github.io/Le-Blanc-Uniformes/" />
+
+<!-- Open Graph (preview WhatsApp/Instagram) -->
+<meta property="og:title" content="Le Blanc Uniformes" />
+<meta property="og:description" content="Uniformes que valorizam sua marca." />
+<meta property="og:type" content="website" />
+<!-- DICA: troque por uma imagem sua quando tiver -->
+<meta property="og:image" content="https://source.unsplash.com/1200x630/?uniform,black,gold" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Icons (premium) -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 <style>
 :root{
   --gold:#d4af37;
-  --gold-light: #f1d592;
+  --gold-light:#f1d592;
   --black:#000;
-  --gray:#1a1a1a;
+  --gray:#0f0f0f;
   --space:#7a7a7a;
-  --transition: all 0.3s ease-in-out;
+  --white:#ffffff;
+  --transition: all .28s ease-in-out;
+  --radius: 22px;
+  --shadow: 0 18px 40px rgba(0,0,0,.55);
+  --border: 1px solid rgba(212,175,55,.22);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+html{scroll-behavior:smooth}
 body{
   background:var(--black);
   color:var(--gold);
   overflow-x:hidden;
-  line-height: 1.6;
+  line-height:1.6;
 }
 
-/* TOPO */
+/* Acessibilidade / foco */
+:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 10px; }
+
+/* Reduz animações se o usuário preferir */
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+}
+
+/* TOP BAR */
 .top-bar{
-  background:#222;
+  background:#1d1d1d;
   text-align:center;
-  padding:8px;
+  padding:8px 14px;
   font-size:12px;
-  position: relative;
-  z-index: 1201;
-  letter-spacing: 1px;
+  position:relative;
+  z-index:1201;
+  letter-spacing:.8px;
+  color:#ddd;
 }
 
-/* HEADER FIXO COM BLUR */
+/* HEADER */
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 30px;
-  position: sticky;
-  top: 0;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(10px);
+  padding:14px 26px;
+  position:sticky;
+  top:0;
+  background:rgba(0,0,0,.88);
+  backdrop-filter: blur(12px);
   z-index:1100;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 1px solid rgba(212,175,55,.14);
 }
 
 .logo-area{
   display:flex;
   align-items:center;
   gap:12px;
-  transition: var(--transition);
+  transition:var(--transition);
 }
 
-.logo-area img{height:45px;}
-
+.logo-area img{height:44px;width:auto}
 .logo-area h1{
-  font-size: 18px;
+  font-size:16px;
   letter-spacing:2px;
   font-weight:500;
-  color: var(--gold);
+  color:var(--gold);
 }
 
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* Botão orçamento (desktop) */
+.cta-header{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  border-radius:999px;
+  border: var(--border);
+  background: rgba(212,175,55,.06);
+  color: var(--gold);
+  text-decoration:none;
+  font-size:13px;
+  transition:var(--transition);
+}
+.cta-header:hover{ background: rgba(212,175,55,.16); transform: translateY(-1px); }
+
+/* Menu */
 .menu-btn{
   font-size:28px;
   cursor:pointer;
   z-index:1200;
-  transition: var(--transition);
-  padding: 5px;
+  transition:var(--transition);
+  padding:5px 8px;
+  border-radius:12px;
 }
+.menu-btn:hover{ color:#fff; background: rgba(255,255,255,.05); }
 
-.menu-btn:hover { color: #fff; }
-
-/* --- CUSTOMIZAÇÃO: OVERLAY PARA FECHAR CLICANDO FORA (WEB) --- */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5); /* Fundo escurecido leve */
-  z-index: 1140;
-  display: none;
+/* OVERLAY */
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.56);
+  z-index:1140;
+  display:none;
   backdrop-filter: blur(2px);
 }
-.menu-overlay.active { display: block; }
+.menu-overlay.active{ display:block; }
 
-/* MENU LATERAL REFINADO */
+/* SIDE MENU */
 .side-menu{
   position:fixed;
   top:0;
   right:-100%;
-  width:320px;
+  width:340px;
   height:100vh;
-  background:#0f0f0f;
-  padding:110px 40px 40px;
-  transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  background:#0b0b0b;
+  padding:106px 38px 38px;
+  transition: .45s cubic-bezier(.77,.2,.05,1);
   z-index:1150;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+  box-shadow:-10px 0 30px rgba(0,0,0,.85);
+  border-left: 1px solid rgba(212,175,55,.12);
 }
+.side-menu.active{ right:0; }
 
-.side-menu.active{right:0;}
-
-/* --- CUSTOMIZAÇÃO: X CONDICIONAL PARA PWA --- */
-.close-side-menu {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  font-size: 30px;
-  cursor: pointer;
-  color: var(--gold);
-  transition: var(--transition);
-  display: none; /* Escondido por padrão (Web) */
+.close-side-menu{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:30px;
+  cursor:pointer;
+  color:var(--gold);
+  transition:var(--transition);
+  display:none;
 }
-
-/* Detecta se é PWA instalado para mostrar o X */
-@media all and (display-mode: standalone) {
-  .close-side-menu { display: block; }
+@media all and (display-mode: standalone){
+  .close-side-menu{ display:block; }
 }
+.close-side-menu:hover{ color:#fff; transform: scale(1.08); }
 
-.close-side-menu:hover {
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.side-menu a{
+.side-menu nav a{
   display:block;
-  margin-bottom:25px;
+  margin-bottom:22px;
   text-decoration:none;
-  color: var(--gold);
-  font-size: 18px;
-  font-weight: 400;
-  transition: var(--transition);
+  color:var(--gold);
+  font-size:17px;
+  font-weight:400;
+  transition:var(--transition);
 }
-
-.side-menu a:hover { color: #fff; padding-left: 10px; }
+.side-menu nav a:hover{ color:#fff; padding-left:10px; }
 
 .submenu{
   margin-left:15px;
   display:none;
-  border-left: 1px solid rgba(212, 175, 55, 0.3);
-  padding-left: 20px;
-  margin-bottom: 20px;
+  border-left: 1px solid rgba(212,175,55,.22);
+  padding-left:18px;
+  margin-bottom:18px;
+}
+.submenu a{
+  font-size:14px;
+  margin-bottom:12px;
+  color:#cfcfcf;
 }
 
-.submenu a {
-    font-size: 15px;
-    margin-bottom: 12px;
-    color: #ccc;
+/* MAIN LAYOUT */
+main{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 18px;
 }
 
 /* HERO */
 .hero{
-  padding:60px 25px 20px;
-  max-width:1200px;
-  margin:auto;
+  padding:64px 0 22px;
   text-align:center;
   animation: fadeIn 1s ease;
 }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
 .hero h2{
-  font-size: clamp(26px, 5vw, 42px);
-  font-weight:400;
-  margin-bottom: 10px;
+  font-size: clamp(26px, 5vw, 44px);
+  font-weight:500;
+  margin-bottom:10px;
+  letter-spacing:.2px;
 }
-
 .hero p{
-  margin:15px auto;
-  max-width:600px;
-  color: #aaa;
+  margin:12px auto 0;
+  max-width:740px;
+  color:#b7b7b7;
 }
 
-/* BUSCA REFINADA */
+/* CTA HERO */
+.hero-cta{
+  margin-top: 22px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 18px;
+  border-radius:999px;
+  border: var(--border);
+  background: rgba(212,175,55,.08);
+  color: var(--gold);
+  text-decoration:none;
+  font-size:14px;
+  transition:var(--transition);
+}
+.btn:hover{ background: rgba(212,175,55,.18); transform: translateY(-2px); }
+.btn.primary{
+  background: var(--gold);
+  color:#000;
+  border: 1px solid rgba(212,175,55,.9);
+}
+.btn.primary:hover{ filter: brightness(1.05); transform: translateY(-2px); }
+
+/* BENEFITS */
+.benefits{
+  margin: 30px auto 10px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:14px;
+}
+.benefit{
+  background: rgba(255,255,255,.03);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding:16px 16px;
+  text-align:left;
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+.benefit .icon{
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  background: rgba(212,175,55,.10);
+  border: 1px solid rgba(212,175,55,.22);
+  margin-bottom:10px;
+}
+.benefit h4{ color: var(--gold-light); font-size:14px; font-weight:600; margin-bottom:4px; }
+.benefit p{ color:#c7c7c7; font-size:13px; }
+
+/* SEARCH */
 .search-box{
-  max-width:550px;
-  margin:35px auto 0;
+  max-width:560px;
+  margin:26px auto 0;
 }
-
 .search-box input{
   width:100%;
-  padding:16px 25px;
-  border-radius:30px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  background:#111;
+  padding:16px 22px;
+  border-radius:999px;
+  border: 1px solid rgba(212,175,55,.28);
+  background:#0d0d0d;
   color:#fff;
   font-size:14px;
   outline:none;
+  transition:var(--transition);
+}
+.search-box input:focus{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 6px rgba(212,175,55,.08);
+}
+
+/* CATEGORIES */
+.section-title{
+  margin-top: 54px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+}
+.section-title h3{
+  font-size: 18px;
+  font-weight:600;
+  color: var(--gold-light);
+  letter-spacing:.6px;
+}
+.section-title p{
+  color:#a9a9a9;
+  font-size:13px;
+}
+
+.categories{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:14px;
+}
+.cat{
+  position:relative;
+  overflow:hidden;
+  border-radius: var(--radius);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background:#0c0c0c;
+  min-height: 150px;
+  cursor:pointer;
   transition: var(--transition);
 }
-
-.search-box input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+.cat:hover{ transform: translateY(-4px); border-color: rgba(212,175,55,.35); }
+.cat::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.85));
+}
+.cat img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+}
+.cat:hover img{ transform: scale(1.08); }
+.cat .label{
+  position:absolute;
+  left:14px; right:14px; bottom:14px;
+  z-index:2;
+}
+.cat .label strong{
+  display:block;
+  color:#fff;
+  font-size:14px;
+  letter-spacing:.4px;
+}
+.cat .label span{
+  display:block;
+  margin-top:4px;
+  color:#d0d0d0;
+  font-size:12px;
 }
 
-/* SLIDER 1:1 COM INDICADORES */
+/* SLIDER 1:1 */
 .slider-wrapper{
   width:100%;
-  max-width:1200px;
-  margin:50px auto;
-  position:relative;
+  margin:48px auto 10px;
   display:flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
 }
-
-.slider-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.slider-container{
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
-
 .slider{
-  width: min(500px, 85vw);
+  width: min(520px, 86vw);
   aspect-ratio: 1/1;
   overflow:hidden;
-  border-radius:24px;
+  border-radius: 26px;
   position:relative;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(212,175,55,.22);
+  background:#0a0a0a;
 }
-
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity .85s ease-in-out;
 }
-
-.slide.active{opacity:1;}
-
+.slide.active{ opacity:1; }
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-/* DOTS/INDICADORES */
-.slider-dots {
-    display: flex;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: #444;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.dot.active {
-    background: var(--gold);
-    width: 20px;
-    border-radius: 10px;
-}
-
+/* Arrows */
 .slider-arrow{
   background:none;
   border:none;
-  font-size:45px;
-  color: var(--gold);
+  font-size:44px;
+  color:var(--gold);
   cursor:pointer;
-  opacity: 0.6;
-  transition: var(--transition);
+  opacity:.65;
+  transition:var(--transition);
+  padding: 6px 10px;
+  border-radius: 14px;
+}
+.slider-arrow:hover{ opacity:1; transform:scale(1.06); background: rgba(255,255,255,.04); }
+
+/* dots */
+.slider-dots{
+  display:flex;
+  gap:8px;
+}
+.dot{
+  width:8px;height:8px;
+  background:#3b3b3b;
+  border-radius: 50%;
+  cursor:pointer;
+  transition:var(--transition);
+}
+.dot.active{
+  background: var(--gold);
+  width:20px;
+  border-radius: 10px;
 }
 
-.slider-arrow:hover { opacity: 1; transform: scale(1.1); }
-
-/* LOJA COM EFEITO HOVER */
+/* STORE */
 .store{
   display:none;
-  padding:40px 25px 100px;
-  max-width:1200px;
-  margin:auto;
+  padding: 36px 0 110px;
 }
-
 .store-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:40px;
-  border-bottom: 1px solid #222;
-  padding-bottom: 20px;
+  margin-bottom:24px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 16px;
 }
-
 .back-btn{
   background:none;
-  border:1px solid var(--gold);
+  border: var(--border);
   color:var(--gold);
-  padding:10px 22px;
-  border-radius:25px;
+  padding:10px 18px;
+  border-radius:999px;
   cursor:pointer;
   font-size: 13px;
   transition: var(--transition);
 }
-
-.back-btn:hover { background: var(--gold); color: #000; }
+.back-btn:hover{ background: var(--gold); color:#000; }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+  gap:18px;
 }
-
 .product{
-  background: #0a0a0a;
-  padding:15px;
-  border-radius:20px;
-  text-align:center;
-  border: 1px solid transparent;
+  background: rgba(255,255,255,.03);
+  padding:14px;
+  border-radius: var(--radius);
+  text-align:left;
+  border: var(--border);
   transition: var(--transition);
+  box-shadow: 0 12px 26px rgba(0,0,0,.35);
 }
-
-.product:hover {
-    border-color: rgba(212, 175, 55, 0.3);
-    transform: translateY(-5px);
-    background: #111;
+.product:hover{
+  border-color: rgba(212,175,55,.34);
+  transform: translateY(-4px);
+  background: rgba(255,255,255,.05);
 }
-
-.product-img-box {
-    width: 100%;
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 15px;
-    margin-bottom: 15px;
+.product-img-box{
+  width:100%;
+  aspect-ratio: 1/1;
+  overflow:hidden;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  background:#111;
 }
-
 .product img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition: transform 0.5s ease;
+  transition: transform .55s ease;
+}
+.product:hover img{ transform: scale(1.08); }
+
+.product h4{ font-size: 15px; color: #fff; font-weight: 600; margin-top: 8px; }
+.product .meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+}
+.price{ color: var(--gold-light); font-weight: 700; }
+.pill{
+  font-size: 11px;
+  color:#cfcfcf;
+  border: 1px solid rgba(255,255,255,.14);
+  padding:6px 10px;
+  border-radius: 999px;
 }
 
-.product:hover img { transform: scale(1.1); }
+.product .actions{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+}
+.action-btn{
+  flex:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  color:#fff;
+  text-decoration:none;
+  font-size: 13px;
+  transition: var(--transition);
+}
+.action-btn:hover{ background: rgba(255,255,255,.07); transform: translateY(-2px); }
+.action-btn.whats{
+  border-color: rgba(37,211,102,.35);
+  background: rgba(37,211,102,.10);
+}
+.action-btn.whats:hover{ background: rgba(37,211,102,.18); }
 
-/* WHATSAPP */
+/* FOOTER */
+footer{
+  border-top: 1px solid rgba(212,175,55,.10);
+  padding: 26px 0 34px;
+  color:#9a9a9a;
+  text-align:center;
+  font-size: 12px;
+}
+footer a{ color: var(--gold); text-decoration:none; }
+footer a:hover{ text-decoration:underline; }
+
+/* WHATS FLOAT */
 .whatsapp{
   position:fixed;
-  bottom:30px;
-  right:30px;
+  bottom:24px;
+  right:24px;
   width:60px;
   height:60px;
   background:#25D366;
@@ -363,23 +566,27 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:30px;
+  font-size:28px;
   text-decoration:none;
   color:#fff;
   z-index: 1000;
-  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 10px 20px rgba(37,211,102,.28);
   transition: var(--transition);
 }
+.whatsapp:hover{ transform: scale(1.08) rotate(8deg); }
 
-.whatsapp:hover { transform: scale(1.1) rotate(10deg); }
-
-/* MOBILE AJUSTES */
-@media(max-width:768px){
-  header { padding: 15px 20px; }
-  .logo-area h1 { font-size: 14px; }
-  .logo-area img { height: 35px; }
-  .side-menu { width: 85%; }
-  .slider-arrow { display: none; } /* No mobile usa-se swipe */
+/* RESPONSIVO */
+@media (max-width: 980px){
+  .categories{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .benefits{ grid-template-columns: 1fr; }
+}
+@media (max-width: 768px){
+  header{ padding: 14px 18px; }
+  .logo-area h1{ font-size: 13px; }
+  .logo-area img{ height: 34px; }
+  .side-menu{ width: 86%; }
+  .slider-arrow{ display:none; }
+  .cta-header{ display:none; }
 }
 </style>
 </head>
@@ -387,114 +594,313 @@ header{
 <body>
 
 <div class="top-bar">
-🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
+  🚚 Enviamos para todo o Brasil • Pagamento à vista 3% OFF
 </div>
 
-<div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="menu-overlay" id="overlay" onclick="toggleMenu()" aria-hidden="true"></div>
 
 <header>
-  <div class="logo-area">
-    <img src="assets/img/logo.png" alt="Le Blanc Logo">
+  <div class="logo-area" onclick="goHome()" style="cursor:pointer" title="Voltar ao início">
+    <!-- Se você tiver sua logo local, mantenha assets/img/logo.png -->
+    <img src="assets/img/logo.png" alt="Le Blanc Logo" width="160" height="44" loading="eager" decoding="async">
     <h1>LE BLANC UNIFORMES</h1>
   </div>
-  <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</div>
+
+  <div class="header-actions">
+    <a class="cta-header" href="#catalogo" aria-label="Ver catálogo">
+      <i class="fa-solid fa-layer-group"></i> Ver catálogo
+    </a>
+    <div class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Abrir menu" role="button" tabindex="0">☰</div>
+  </div>
 </header>
 
-<div class="side-menu" id="menu">
-  <div class="close-side-menu" onclick="toggleMenu()">✕</div>
-  
-  <a href="#" onclick="toggleSub()">Catálogo Loja ▾</a>
-  <div class="submenu" id="submenu">
-    <a onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
-    <a onclick="openStore('Jalecos Femininos')">Jalecos Femininos</a>
-    <a onclick="openStore('Uniformes')">Uniformes Profissionais</a>
-    <a onclick="openStore('Aventais')">Aventais Gourmet</a>
-  </div>
-  <a href="#">Suporte ao Cliente</a>
-  <a href="#">Nossa História</a>
+<div class="side-menu" id="menu" aria-hidden="true">
+  <div class="close-side-menu" onclick="toggleMenu()" aria-label="Fechar menu">✕</div>
+
+  <nav>
+    <a href="#home" onclick="safeNav()">Início</a>
+
+    <a href="javascript:void(0)" onclick="toggleSub()">Catálogo Loja ▾</a>
+    <div class="submenu" id="submenu">
+      <a href="javascript:void(0)" onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
+      <a href="javascript:void(0)" onclick="openStore('Jalecos Femininos')">Jalecos Femininos</a>
+      <a href="javascript:void(0)" onclick="openStore('Uniformes Corporativos')">Uniformes Corporativos</a>
+      <a href="javascript:void(0)" onclick="openStore('Aventais Gourmet')">Aventais Gourmet</a>
+    </div>
+
+    <a href="#suporte" onclick="safeNav()">Suporte ao Cliente</a>
+    <a href="#historia" onclick="safeNav()">Nossa História</a>
+  </nav>
 </div>
 
 <main>
-    <section class="hero" id="home">
-      <h2>Elegância que veste o profissional</h2>
-      <p>Qualidade premium, durabilidade e acabamento de alto padrão para quem não abre mão do estilo no trabalho.</p>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <h2>Uniformes que valorizam sua marca</h2>
+    <p>Qualidade premium, durabilidade e acabamento impecável para quem quer vestir o time com elegância e credibilidade.</p>
 
-      <div class="search-box">
-        <input type="text" placeholder="O que você procura hoje?" onkeyup="searchProduct(event)">
-      </div>
-    </section>
-
-    <div class="slider-wrapper" id="sliderArea">
-      <div class="slider-container">
-          <button class="slider-arrow" onclick="prevSlide()">‹</button>
-          <div class="slider" id="slider">
-            <div class="slide active"><img src="assets/img/imagem-1.png"></div>
-            <div class="slide"><img src="assets/img/imagem-2.png"></div>
-            <div class="slide"><img src="assets/img/imagem-3.png"></div>
-            <div class="slide"><img src="assets/img/imagem-4.png"></div>
-          </div>
-          <button class="slider-arrow" onclick="nextSlide()">›</button>
-      </div>
-      <div class="slider-dots" id="dots"></div>
+    <div class="hero-cta">
+      <a class="btn primary" href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Pedir orçamento
+      </a>
+      <a class="btn" href="#catalogo">
+        <i class="fa-solid fa-layer-group"></i> Ver catálogo
+      </a>
+      <a class="btn" href="#sliderArea">
+        <i class="fa-solid fa-images"></i> Ver destaques
+      </a>
     </div>
 
-    <section class="store" id="store">
-      <div class="store-top">
-        <h3 id="storeTitle"></h3>
-        <button class="back-btn" onclick="goHome()">← Voltar ao Início</button>
+    <div class="benefits" aria-label="Diferenciais Le Blanc">
+      <div class="benefit">
+        <div class="icon"><i class="fa-solid fa-crown"></i></div>
+        <h4>Acabamento premium</h4>
+        <p>Corte preciso e detalhes que elevam a apresentação do profissional.</p>
       </div>
-      <div class="products" id="products"></div>
-    </section>
+      <div class="benefit">
+        <div class="icon"><i class="fa-solid fa-shirt"></i></div>
+        <h4>Conforto e durabilidade</h4>
+               <p>Modelagens que vestem bem e tecidos pensados para a rotina de trabalho.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <h4>Envio para todo o Brasil</h4>
+        <p>Atendimento rápido e orientação para você escolher certo.</p>
+      </div>
+    </div>
+
+    <div class="search-box" id="catalogo">
+      <input type="text" placeholder="Digite e aperte Enter (ex: jaleco feminino, avental, uniforme)" onkeyup="searchProduct(event)" aria-label="Buscar produtos">
+    </div>
+  </section>
+
+  <!-- CATEGORIAS (com imagens da web) -->
+  <div class="section-title">
+    <h3>Categorias em destaque</h3>
+    <p>Clique para abrir o catálogo</p>
+  </div>
+
+  <section class="categories" aria-label="Categorias">
+    <!-- Imagens de exemplo: Unsplash Source (livre) -->
+    <div class="cat" onclick="openStore('Jalecos Femininos')" role="button" tabindex="0" aria-label="Abrir Jalecos Femininos">
+      <img src="https://source.unsplash.com/900x900/?doctor,lab,coat,female" alt="Jaleco feminino" loading="lazy" decoding="async">
+      <div class="label"><strong>Jalecos Femininos</strong><span>Elegância e presença</span></div>
+    </div>
+
+    <div class="cat" onclick="openStore('Jalecos Masculinos')" role="button" tabindex="0" aria-label="Abrir Jalecos Masculinos">
+      <img src="https://source.unsplash.com/900x900/?doctor,lab,coat,man" alt="Jaleco masculino" loading="lazy" decoding="async">
+      <div class="label"><strong>Jalecos Masculinos</strong><span>Profissional e impecável</span></div>
+    </div>
+
+    <div class="cat" onclick="openStore('Aventais Gourmet')" role="button" tabindex="0" aria-label="Abrir Aventais Gourmet">
+      <img src="https://source.unsplash.com/900x900/?chef,apron,restaurant" alt="Avental gourmet" loading="lazy" decoding="async">
+      <div class="label"><strong>Aventais Gourmet</strong><span>Estilo na cozinha</span></div>
+    </div>
+
+    <div class="cat" onclick="openStore('Uniformes Corporativos')" role="button" tabindex="0" aria-label="Abrir Uniformes Corporativos">
+      <img src="https://source.unsplash.com/900x900/?business,uniform,professional" alt="Uniforme corporativo" loading="lazy" decoding="async">
+      <div class="label"><strong>Uniformes Corporativos</strong><span>Imagem forte de marca</span></div>
+    </div>
+  </section>
+
+  <!-- SLIDER 1:1 (imagens exemplo da web) -->
+  <div class="slider-wrapper" id="sliderArea" aria-label="Destaques">
+    <div class="slider-container">
+      <button class="slider-arrow" onclick="prevSlide()" aria-label="Slide anterior">‹</button>
+
+      <div class="slider" id="slider">
+        <div class="slide active">
+          <img src="https://source.unsplash.com/1080x1080/?labcoat,doctor,portrait" alt="Destaque Le Blanc 1" loading="lazy" decoding="async">
+        </div>
+        <div class="slide">
+          <img src="https://source.unsplash.com/1080x1080/?medical,scrubs,uniform" alt="Destaque Le Blanc 2" loading="lazy" decoding="async">
+        </div>
+        <div class="slide">
+          <img src="https://source.unsplash.com/1080x1080/?chef,uniform,kitchen" alt="Destaque Le Blanc 3" loading="lazy" decoding="async">
+        </div>
+        <div class="slide">
+          <img src="https://source.unsplash.com/1080x1080/?corporate,professional,uniform" alt="Destaque Le Blanc 4" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <button class="slider-arrow" onclick="nextSlide()" aria-label="Próximo slide">›</button>
+    </div>
+
+    <div class="slider-dots" id="dots" aria-label="Indicadores do slider"></div>
+  </div>
+
+  <!-- LOJA -->
+  <section class="store" id="store" aria-label="Catálogo de produtos">
+    <div class="store-top">
+      <h3 id="storeTitle"></h3>
+      <button class="back-btn" onclick="goHome()">← Voltar ao Início</button>
+    </div>
+    <div class="products" id="products"></div>
+  </section>
+
+  <!-- SEÇÕES EXTRAS -->
+  <div class="section-title" id="suporte">
+    <h3>Suporte ao Cliente</h3>
+    <p>Atendimento rápido pelo WhatsApp</p>
+  </div>
+  <section class="benefits" style="margin-top:16px;">
+    <div class="benefit">
+      <div class="icon"><i class="fa-solid fa-headset"></i></div>
+      <h4>Ajuda para escolher</h4>
+      <p>Te guiamos por modelagem, tecido, bordado e melhor custo-benefício.</p>
+    </div>
+    <div class="benefit">
+      <div class="icon"><i class="fa-solid fa-ruler-combined"></i></div>
+      <h4>Tamanhos e ajustes</h4>
+      <p>Orientação de medidas e personalização para equipe e marca.</p>
+    </div>
+    <div class="benefit">
+      <div class="icon"><i class="fa-solid fa-badge-check"></i></div>
+      <h4>Qualidade garantida</h4>
+      <p>Uniformes feitos para durar, com acabamento e presença.</p>
+    </div>
+  </section>
+
+  <div class="section-title" id="historia">
+    <h3>Nossa História</h3>
+    <p>Marca premium • identidade forte</p>
+  </div>
+  <section style="margin-top:16px; background: rgba(255,255,255,.03); border: var(--border); border-radius: var(--radius); padding:18px; box-shadow: 0 12px 26px rgba(0,0,0,.35);">
+    <p style="color:#cfcfcf; font-size:13px;">
+      A Le Blanc nasce com a proposta de elevar a imagem do profissional através de uniformes sofisticados, confortáveis e duráveis.
+      Aqui, cada detalhe importa: caimento, tecido, acabamento e personalização para valorizar a sua marca.
+    </p>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Le Blanc Uniformes • <a href="#home">Voltar ao topo</a></div>
+  </footer>
 </main>
 
-<a class="whatsapp" href="https://wa.me/5541998096090" target="_blank" aria-label="Fale conosco no WhatsApp">💬</a>
+<!-- WhatsApp flutuante -->
+<a class="whatsapp"
+   href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F"
+   target="_blank" rel="noopener"
+   aria-label="Fale conosco no WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <script>
+/* ELEMENTOS */
 const menu = document.getElementById("menu");
 const menuBtn = document.getElementById("menuBtn");
-const overlay = document.getElementById("overlay"); // Elemento do Overlay
+const overlay = document.getElementById("overlay");
 const submenu = document.getElementById("submenu");
+
 const home = document.getElementById("home");
 const store = document.getElementById("store");
 const sliderArea = document.getElementById("sliderArea");
 const dotsContainer = document.getElementById("dots");
+document.getElementById("year").textContent = new Date().getFullYear();
 
-/* MENU ATUALIZADO COM OVERLAY */
+/* Helpers */
+function lockScroll(lock){
+  document.body.style.overflow = lock ? "hidden" : "auto";
+}
+
+/* MENU com Overlay + ESC + tecla Enter */
 function toggleMenu(){
+  const willOpen = !menu.classList.contains("active");
   menu.classList.toggle("active");
-  overlay.classList.toggle("active"); // Alterna o overlay
-  
-  if(menu.classList.contains("active")){
-      menuBtn.textContent = "✕";
-      document.body.style.overflow = "hidden";
+  overlay.classList.toggle("active");
+  menu.setAttribute("aria-hidden", willOpen ? "false" : "true");
+
+  if(willOpen){
+    menuBtn.textContent = "✕";
+    menuBtn.setAttribute("aria-label","Fechar menu");
+    lockScroll(true);
   } else {
-      menuBtn.textContent = "☰";
-      document.body.style.overflow = "auto";
+    menuBtn.textContent = "☰";
+    menuBtn.setAttribute("aria-label","Abrir menu");
+    lockScroll(false);
   }
 }
 
-function toggleSub(){
-  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+menuBtn.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter" || e.key === " ") toggleMenu();
+});
+
+document.addEventListener("keydown", (e)=>{
+  if(e.key === "Escape" && menu.classList.contains("active")) toggleMenu();
+});
+
+function safeNav(){
+  if(menu.classList.contains("active")) toggleMenu();
 }
 
-/* LOJA */
+/* SUBMENU */
+function toggleSub(){
+  submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+}
+
+/* LOJA / CATÁLOGO */
+const WHATS_NUMBER = "5541998096090";
+
+function buildWhatsLink(text){
+  return `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 function openStore(title){
   if(menu.classList.contains("active")) toggleMenu();
+
   home.style.display = "none";
   sliderArea.style.display = "none";
   store.style.display = "block";
   document.getElementById("storeTitle").innerText = title;
-  
+
   const productsDiv = document.getElementById("products");
   productsDiv.innerHTML = "";
-  for(let i=1; i<=6; i++){
+
+  // Imagens de produto por categoria (web/Unsplash source)
+  const imgQueryByTitle = {
+    "Jalecos Masculinos": "labcoat,doctor,man",
+    "Jalecos Femininos": "labcoat,doctor,female",
+    "Uniformes Corporativos": "business,uniform,professional",
+    "Aventais Gourmet": "chef,apron,restaurant"
+  };
+
+  const q = imgQueryByTitle[title] || "uniform,professional";
+
+  for(let i=1; i<=8; i++){
+    const productName = `${title} ${i}`;
+    const price = "R$ 189,90";
+    const tag = (title.includes("Jalecos")) ? "Premium" : (title.includes("Aventais") ? "Gourmet" : "Corporativo");
+
+    const msg = `Olá! Quero orçamento do ${productName}. Pode me enviar tamanhos, cores e prazo?`;
+    const link = buildWhatsLink(msg);
+
     productsDiv.innerHTML += `
       <div class="product">
-        <div class="product-img-box"><img src="assets/img/placeholder.png" alt="Produto"></div>
-        <h4>${title} ${i}</h4>
-        <span style="color:#fff; font-weight:600">R$ 189,90</span>
-      </div>`;
+        <div class="product-img-box">
+          <img
+            src="https://source.unsplash.com/800x800/?${q}&sig=${i}"
+            alt="${productName}"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <h4>${productName}</h4>
+        <div class="meta">
+          <div class="price">${price}</div>
+          <div class="pill">${tag}</div>
+        </div>
+        <div class="actions">
+          <a class="action-btn whats" href="${link}" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Orçar no Whats
+          </a>
+          <a class="action-btn" href="#suporte" onclick="window.scrollTo({top: document.getElementById('suporte').offsetTop - 80, behavior:'smooth'})">
+            <i class="fa-solid fa-circle-info"></i> Detalhes
+          </a>
+        </div>
+      </div>
+    `;
   }
+
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -505,61 +911,71 @@ function goHome(){
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-/* SLIDER LOGIC */
+/* SLIDER */
 let current = 0;
 const slides = document.querySelectorAll(".slide");
 
 slides.forEach((_, i) => {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
-    if(i === 0) dot.classList.add("active");
-    dot.onclick = () => showSlide(i);
-    dotsContainer.appendChild(dot);
+  const dot = document.createElement("div");
+  dot.classList.add("dot");
+  if(i === 0) dot.classList.add("active");
+  dot.onclick = () => showSlide(i);
+  dotsContainer.appendChild(dot);
 });
 
 function showSlide(i){
   current = i;
   slides.forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".dot").forEach(d => d.classList.remove("active"));
-  
   slides[current].classList.add("active");
   document.querySelectorAll(".dot")[current].classList.add("active");
 }
-
 function nextSlide(){
   current = (current + 1) % slides.length;
   showSlide(current);
 }
-
 function prevSlide(){
   current = (current - 1 + slides.length) % slides.length;
   showSlide(current);
 }
 
 let autoSlide = setInterval(nextSlide, 5000);
-
-sliderArea.onmouseenter = () => clearInterval(autoSlide);
-sliderArea.onmouseleave = () => autoSlide = setInterval(nextSlide, 5000);
+sliderArea.addEventListener("mouseenter", () => clearInterval(autoSlide));
+sliderArea.addEventListener("mouseleave", () => autoSlide = setInterval(nextSlide, 5000));
 
 /* SWIPE MOBILE */
 let startX = 0;
 const sliderElem = document.getElementById("slider");
-sliderElem.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+sliderElem.addEventListener("touchstart", e => startX = e.touches[0].clientX, {passive:true});
 sliderElem.addEventListener("touchend", e => {
   let endX = e.changedTouches[0].clientX;
   if(startX - endX > 50) nextSlide();
   if(endX - startX > 50) prevSlide();
-});
+}, {passive:true});
 
 /* BUSCA */
 function searchProduct(e){
   if(e.key === "Enter"){
-    const v = e.target.value.toLowerCase();
+    const v = e.target.value.toLowerCase().trim();
+    if(!v) return;
+
     if(v.includes("fem")) openStore("Jalecos Femininos");
     else if(v.includes("masc")) openStore("Jalecos Masculinos");
-    else openStore("Linha Profissional");
+    else if(v.includes("avental") || v.includes("gourmet") || v.includes("chef")) openStore("Aventais Gourmet");
+    else if(v.includes("corp") || v.includes("social") || v.includes("empresa")) openStore("Uniformes Corporativos");
+    else openStore("Uniformes Corporativos");
   }
 }
+
+/* Deixa cards e categorias clicáveis pelo teclado (Enter/Espaço) */
+document.querySelectorAll(".cat").forEach(el=>{
+  el.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
 </script>
 
 </body>
