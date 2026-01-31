@@ -14,7 +14,6 @@
 <meta property="og:title" content="Le Blanc Uniformes" />
 <meta property="og:description" content="Uniformes que valorizam sua marca." />
 <meta property="og:type" content="website" />
-<!-- DICA: troque por uma imagem sua quando tiver -->
 <meta property="og:image" content="https://source.unsplash.com/1200x630/?uniform,black,gold" />
 
 <!-- Fonts -->
@@ -174,7 +173,9 @@ header{
 .close-side-menu:hover{ color:#fff; transform: scale(1.08); }
 
 .side-menu nav a{
-  display:block;
+  display:flex;
+  align-items:center;
+  gap:10px;
   margin-bottom:22px;
   text-decoration:none;
   color:var(--gold);
@@ -439,7 +440,7 @@ main{
   border-radius: 10px;
 }
 
-/* STORE */
+/* STORE + PÁGINAS INTERNAS */
 .store{
   display:none;
   padding: 36px 0 110px;
@@ -617,9 +618,9 @@ footer a:hover{ text-decoration:underline; }
   <div class="close-side-menu" onclick="toggleMenu()" aria-label="Fechar menu">✕</div>
 
   <nav>
-    <a href="#home" onclick="safeNav()">Início</a>
+    <a href="#home" onclick="safeNav()"><i class="fa-solid fa-house"></i> Início</a>
 
-    <a href="javascript:void(0)" onclick="toggleSub()">Catálogo Loja ▾</a>
+    <a href="javascript:void(0)" onclick="toggleSub()"><i class="fa-solid fa-layer-group"></i> Catálogo Loja ▾</a>
     <div class="submenu" id="submenu">
       <a href="javascript:void(0)" onclick="openStore('Jalecos Femininos')">Jalecos Femininos</a>
       <a href="javascript:void(0)" onclick="openStore('Jalecos Masculinos')">Jalecos Masculinos</a>
@@ -630,12 +631,14 @@ footer a:hover{ text-decoration:underline; }
       <a href="javascript:void(0)" onclick="openStore('Outros')">Outros</a>
     </div>
 
-    <a href="#suporte" onclick="safeNav()">Suporte ao Cliente</a>
-    <a href="#historia" onclick="safeNav()">Nossa História</a>
+    <!-- Agora Suporte e História só aparecem ao clicar no menu -->
+    <a href="javascript:void(0)" onclick="openPage('support')"><i class="fa-solid fa-headset"></i> Suporte ao Cliente</a>
+    <a href="javascript:void(0)" onclick="openPage('history')"><i class="fa-solid fa-book-open"></i> Nossa História</a>
   </nav>
 </div>
 
 <main>
+  <!-- HOME -->
   <section class="hero" id="home">
     <h2>Uniformes que valorizam sua marca</h2>
     <p>Qualidade premium, durabilidade e acabamento impecável para quem quer vestir o time com elegância e credibilidade.</p>
@@ -671,13 +674,13 @@ footer a:hover{ text-decoration:underline; }
     </div>
   </section>
 
-  <!-- CATEGORIAS -->
-  <div class="section-title">
+  <!-- CATEGORIAS (HOME) -->
+  <div class="section-title" id="homeCats">
     <h3>Categorias em destaque</h3>
     <p>Clique para abrir o catálogo</p>
   </div>
 
-  <section class="categories" aria-label="Categorias">
+  <section class="categories" id="categories" aria-label="Categorias">
     <div class="cat" onclick="openStore('Jalecos Femininos')" role="button" tabindex="0">
       <img src="https://source.unsplash.com/900x900/?doctor,lab,coat,female" alt="Jaleco feminino" loading="lazy" decoding="async">
       <div class="label"><strong>Jalecos Femininos</strong><span>Elegância e presença</span></div>
@@ -699,7 +702,7 @@ footer a:hover{ text-decoration:underline; }
     </div>
   </section>
 
-  <!-- SLIDER -->
+  <!-- SLIDER (HOME) -->
   <div class="slider-wrapper" id="sliderArea" aria-label="Destaques">
     <div class="slider-container">
       <button class="slider-arrow" onclick="prevSlide()" aria-label="Slide anterior">‹</button>
@@ -725,7 +728,7 @@ footer a:hover{ text-decoration:underline; }
     <div class="slider-dots" id="dots" aria-label="Indicadores do slider"></div>
   </div>
 
-  <!-- LOJA -->
+  <!-- LOJA (CATÁLOGO) -->
   <section class="store" id="store" aria-label="Catálogo de produtos">
     <div class="store-top">
       <h3 id="storeTitle"></h3>
@@ -734,58 +737,63 @@ footer a:hover{ text-decoration:underline; }
     <div class="products" id="products"></div>
   </section>
 
-  <!-- SUPORTE -->
-  <div class="section-title" id="suporte">
-    <h3>Suporte ao Cliente</h3>
-    <p>Atendimento rápido pelo WhatsApp</p>
-  </div>
-
-  <section class="benefits" style="margin-top:16px;">
-    <div class="benefit">
-      <div class="icon"><i class="fa-solid fa-headset"></i></div>
-      <h4>Fale com a Le Blanc no WhatsApp</h4>
-      <p>
-        Clique e fale agora: 
-        <a href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F"
-           target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none; font-weight:600;">
-           (41) 99809-6090
-        </a>
-      </p>
+  <!-- PÁGINA SUPORTE (SÓ ABRE PELO MENU) -->
+  <section class="store" id="supportPage" aria-label="Suporte ao Cliente">
+    <div class="store-top">
+      <h3>Suporte ao Cliente</h3>
+      <button class="back-btn" onclick="goHome()">← Voltar ao Início</button>
     </div>
 
-    <div class="benefit">
-      <div class="icon"><i class="fa-solid fa-ruler-combined"></i></div>
-      <h4>Tamanhos e ajustes</h4>
-      <p>Orientação de medidas e personalização para equipe e marca.</p>
-    </div>
+    <div class="benefits" style="margin-top:0;">
+      <div class="benefit">
+        <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <h4>WhatsApp</h4>
+        <p>
+          Clique e fale agora:
+          <a href="https://wa.me/5541998096090?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20Le%20Blanc.%20Pode%20me%20ajudar%3F"
+             target="_blank" rel="noopener"
+             style="color:var(--gold); text-decoration:none; font-weight:600;">
+            (41) 99809-6090
+          </a>
+        </p>
+      </div>
 
-    <div class="benefit">
-      <div class="icon"><i class="fa-solid fa-badge-check"></i></div>
-      <h4>Qualidade garantida</h4>
-      <p>Uniformes feitos para durar, com acabamento e presença.</p>
+      <div class="benefit">
+        <div class="icon"><i class="fa-solid fa-ruler-combined"></i></div>
+        <h4>Tamanhos e ajustes</h4>
+        <p>Orientação de medidas e personalização para equipe e marca.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="icon"><i class="fa-solid fa-badge-check"></i></div>
+        <h4>Qualidade garantida</h4>
+        <p>Uniformes feitos para durar, com acabamento e presença.</p>
+      </div>
     </div>
   </section>
 
-  <!-- HISTÓRIA -->
-  <div class="section-title" id="historia">
-    <h3>Nossa História</h3>
-    <p>Desde 2018 • qualidade reconhecida</p>
-  </div>
+  <!-- PÁGINA HISTÓRIA (SÓ ABRE PELO MENU) -->
+  <section class="store" id="historyPage" aria-label="Nossa História">
+    <div class="store-top">
+      <h3>Nossa História</h3>
+      <button class="back-btn" onclick="goHome()">← Voltar ao Início</button>
+    </div>
 
-  <section style="margin-top:16px; background: rgba(255,255,255,.03); border: var(--border); border-radius: var(--radius); padding:18px; box-shadow: 0 12px 26px rgba(0,0,0,.35);">
-    <p style="color:#cfcfcf; font-size:13px;">
-      Fundada em <strong>2018</strong>, a <strong>Le Blanc Uniformes</strong> nasceu com um propósito claro: elevar a imagem de profissionais e empresas por meio de
-      uniformes que unem <strong>elegância, conforto e durabilidade</strong>. Desde o início, construímos nossa reputação com base em um padrão de qualidade
-      rigoroso — do <strong>corte</strong> ao <strong>acabamento</strong>, da escolha de <strong>tecidos</strong> à <strong>personalização</strong> que valoriza a identidade de cada cliente.
-      <br><br>
-      Ao longo dos anos, evoluímos para atender diferentes segmentos, sempre mantendo a mesma essência: <strong>entregar peças com caimento impecável</strong>,
-      presença marcante e resistência para a rotina de trabalho. Para nós, uniforme não é apenas vestuário — é <strong>posicionamento de marca</strong>. 
-      É por isso que cada pedido é tratado com atenção aos detalhes, agilidade no atendimento e compromisso com um resultado final premium.
-    </p>
+    <div style="background: rgba(255,255,255,.03); border: var(--border); border-radius: var(--radius); padding:18px; box-shadow: 0 12px 26px rgba(0,0,0,.35);">
+      <p style="color:#cfcfcf; font-size:13px;">
+        Fundada em <strong>2018</strong>, a <strong>Le Blanc Uniformes</strong> surgiu com um objetivo claro: elevar a imagem de profissionais e empresas por meio de
+        uniformes que unem <strong>elegância, conforto e durabilidade</strong>. Desde o primeiro dia, construímos nossa reputação com base em um padrão de qualidade
+        rigoroso — do <strong>corte</strong> ao <strong>acabamento</strong>, da escolha de <strong>tecidos</strong> à <strong>personalização</strong> que valoriza a identidade de cada cliente.
+        <br><br>
+        Ao longo dos anos, ampliamos nosso portfólio para atender diferentes segmentos, sempre mantendo a mesma essência: <strong>entregar peças com caimento impecável</strong>,
+        presença marcante e resistência para a rotina de trabalho. Para nós, uniforme não é apenas vestuário — é <strong>posicionamento de marca</strong>.
+        Por isso, cada pedido é tratado com atenção aos detalhes, agilidade no atendimento e compromisso com um resultado final premium.
+      </p>
+    </div>
   </section>
 
   <footer>
-    <div>© <span id="year"></span> Le Blanc Uniformes • <a href="#home">Voltar ao topo</a></div>
+    <div>© <span id="year"></span> Le Blanc Uniformes • <a href="#home" onclick="goHome()">Voltar ao topo</a></div>
   </footer>
 </main>
 
@@ -808,6 +816,10 @@ const home = document.getElementById("home");
 const store = document.getElementById("store");
 const sliderArea = document.getElementById("sliderArea");
 const dotsContainer = document.getElementById("dots");
+
+const supportPage = document.getElementById("supportPage");
+const historyPage = document.getElementById("historyPage");
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* Helpers */
@@ -815,7 +827,15 @@ function lockScroll(lock){
   document.body.style.overflow = lock ? "hidden" : "auto";
 }
 
-/* MENU com Overlay + ESC + tecla Enter */
+function hideAllSections(){
+  home.style.display = "none";
+  sliderArea.style.display = "none";
+  store.style.display = "none";
+  supportPage.style.display = "none";
+  historyPage.style.display = "none";
+}
+
+/* MENU */
 function toggleMenu(){
   const willOpen = !menu.classList.contains("active");
   menu.classList.toggle("active");
@@ -850,6 +870,17 @@ function toggleSub(){
   submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
 }
 
+/* ABRIR PÁGINAS INTERNAS (SUPORTE / HISTÓRIA) */
+function openPage(which){
+  safeNav();
+  hideAllSections();
+
+  if(which === "support") supportPage.style.display = "block";
+  if(which === "history") historyPage.style.display = "block";
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 /* LOJA / CATÁLOGO */
 const WHATS_NUMBER = "5541998096090";
 
@@ -858,17 +889,15 @@ function buildWhatsLink(text){
 }
 
 function openStore(title){
-  if(menu.classList.contains("active")) toggleMenu();
+  safeNav();
+  hideAllSections();
 
-  home.style.display = "none";
-  sliderArea.style.display = "none";
   store.style.display = "block";
   document.getElementById("storeTitle").innerText = title;
 
   const productsDiv = document.getElementById("products");
   productsDiv.innerHTML = "";
 
-  // Imagens de produto por categoria (web/Unsplash source)
   const imgQueryByTitle = {
     "Jalecos Femininos": "labcoat,doctor,female",
     "Jalecos Masculinos": "labcoat,doctor,man",
@@ -913,8 +942,8 @@ function openStore(title){
           <a class="action-btn whats" href="${link}" target="_blank" rel="noopener">
             <i class="fa-brands fa-whatsapp"></i> Orçar no Whats
           </a>
-          <a class="action-btn" href="#suporte" onclick="window.scrollTo({top: document.getElementById('suporte').offsetTop - 80, behavior:'smooth'})">
-            <i class="fa-solid fa-circle-info"></i> Detalhes
+          <a class="action-btn" href="javascript:void(0)" onclick="openPage('support')">
+            <i class="fa-solid fa-circle-info"></i> Suporte
           </a>
         </div>
       </div>
@@ -925,7 +954,7 @@ function openStore(title){
 }
 
 function goHome(){
-  store.style.display = "none";
+  hideAllSections();
   home.style.display = "block";
   sliderArea.style.display = "flex";
   window.scrollTo({top: 0, behavior: 'smooth'});
@@ -990,7 +1019,7 @@ function searchProduct(e){
   }
 }
 
-/* Deixa cards e categorias clicáveis pelo teclado (Enter/Espaço) */
+/* Cards clicáveis pelo teclado */
 document.querySelectorAll(".cat").forEach(el=>{
   el.addEventListener("keydown", (e)=>{
     if(e.key === "Enter" || e.key === " "){
